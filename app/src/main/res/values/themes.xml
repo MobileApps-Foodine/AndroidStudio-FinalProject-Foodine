@@ -1,0 +1,24 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.Foodine" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/prim_green</item>
+        <item name="colorPrimaryVariant">@color/prim_green_light</item>
+        <item name="colorOnPrimary">@color/prim_green_dark</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/sec_green</item>
+        <item name="colorSecondaryVariant">@color/sec_green_light</item>
+        <item name="colorOnSecondary">@color/sec_green_dark</item>
+        <!-- Status bar color. -->
+<!--        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimary</item>-->
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="windowActionBarOverlay">true</item>
+        <!-- Customize your theme here. -->
+        <item name="fontFamily">@font/lato</item>
+        <item name="textInputStyle">@style/TextInputLayoutStyle</item>
+        <item name="android:colorBackground">@color/white</item>
+        <item name="textAppearanceButton">@style/AppTextAppearance.Button</item>
+        <item name="shapeAppearanceSmallComponent">@style/AppShapeAppearance.SmallComponent</item>
+        <item name="shapeAppearanceLargeComponent">@style/AppShapeAppearance.LargeComponent</item>
+    </style>
+</resources>

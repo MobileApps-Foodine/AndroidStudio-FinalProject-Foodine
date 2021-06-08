@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="layoutPadding">24dp</dimen>
+    <dimen name="viewPadding">12dp</dimen>
+    <dimen name="subviewPadding">6dp</dimen>
+    <dimen name="bottomBarPadding">60dp</dimen>
+    <dimen name="titleMarginLeft">48dp</dimen>
+
+    <dimen name="headerTextSize">22sp</dimen>
+    <dimen name="newsMoreTextSize">12sp</dimen>
+    <dimen name="loginCardRadius">20dp</dimen>
+    <dimen name="loginViewsMargin">20dp</dimen>
+
+    <dimen name="signup_text_margin_top">10dp</dimen>
+    <dimen name="edittext_margin">20dp</dimen>
+</resources>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_main_app"
+    app:startDestination="@id/mainHomeFragment">
+
+    <fragment
+        android:id="@+id/mainHomeFragment"
+        android:name="com.projectakhir.foodine.MainApp.MainHomeFragment"
+        android:label="fragment_main_home"
+        tools:layout="@layout/fragment_main_home" />
+    <fragment
+        android:id="@+id/mainDiscoverFragment"
+        android:name="com.projectakhir.foodine.MainApp.MainDiscoverFragment"
+        android:label="fragment_main_discover"
+        tools:layout="@layout/fragment_main_discover" />
+    <fragment
+        android:id="@+id/mainProfileFragment"
+        android:name="com.projectakhir.foodine.MainApp.MainProfileFragment"
+        android:label="fragment_main_profile"
+        tools:layout="@layout/fragment_main_profile" />
+    <fragment
+        android:id="@+id/mainShoppinglistFragment"
+        android:name="com.projectakhir.foodine.MainApp.MainShoppinglistFragment"
+        android:label="fragment_main_shoppinglist"
+        tools:layout="@layout/fragment_main_shoppinglist" />
+    <dialog
+        android:id="@+id/mainAddFragment"
+        android:name="com.projectakhir.foodine.MainApp.MainAddFragment"
+        android:label="fragment_main_add"
+        tools:layout="@layout/fragment_main_add" />
+</navigation>

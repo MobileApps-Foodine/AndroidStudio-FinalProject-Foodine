@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_goals"
+    app:startDestination="@id/goals1Fragment">
+
+    <fragment
+        android:id="@+id/goals1Fragment"
+        android:name="com.projectakhir.foodine.SetGoals.Goals1Fragment"
+        android:label="fragment_goals1"
+        tools:layout="@layout/fragment_goals1" >
+        <action
+            android:id="@+id/action_goals1Fragment_to_goals2Fragment"
+            app:destination="@id/goals2Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/goals2Fragment"
+        android:name="com.projectakhir.foodine.SetGoals.Goals2Fragment"
+        android:label="fragment_goals2"
+        tools:layout="@layout/fragment_goals2" >
+        <action
+            android:id="@+id/action_goals2Fragment_to_goals3Fragment"
+            app:destination="@id/goals3Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/goals3Fragment"
+        android:name="com.projectakhir.foodine.SetGoals.Goals3Fragment"
+        android:label="fragment_goals3"
+        tools:layout="@layout/fragment_goals3" />
+</navigation>
