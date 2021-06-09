@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SetGoals.GoalsActivity"
+    tools:context=".Goals.GoalsActivity"
     android:fitsSystemWindows="true"
     android:background="@color/prim_green"
     android:id="@+id/goals_layout">
@@ -72,33 +72,36 @@
             android:layout_marginHorizontal="48dp" />
     </LinearLayout>
 
-    <androidx.cardview.widget.CardView
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/goals_header"
-        android:layout_marginVertical="@dimen/layoutPadding"
-        app:cardCornerRadius="12dp"
-        android:elevation="8dp">
-
-        <RelativeLayout
+        android:layout_marginVertical="@dimen/layoutPadding">
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="@dimen/layoutPadding">
-            <fragment
-                android:id="@+id/nav_host_fragment"
-                android:name="androidx.navigation.fragment.NavHostFragment"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:defaultNavHost="true"
-                app:navGraph="@navigation/nav_goals" />
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="12dp"
+            android:elevation="8dp">
 
-            <Button
-                android:id="@+id/goals_next_button"
-                android:text="Next"
-                style="@style/AppTextAppearance.Button"
-                android:layout_below="@id/nav_host_fragment"
-                android:layout_centerHorizontal="true"
-            />
-        </RelativeLayout>
-    </androidx.cardview.widget.CardView>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/layoutPadding">
+                <fragment
+                    android:id="@+id/nav_host_fragment"
+                    android:name="androidx.navigation.fragment.NavHostFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:defaultNavHost="true"
+                    app:navGraph="@navigation/nav_goals" />
+
+                <Button
+                    android:id="@+id/goals_next_button"
+                    android:text="Next"
+                    style="@style/AppTextAppearance.Button"
+                    android:layout_below="@id/nav_host_fragment"
+                    android:layout_centerHorizontal="true" />
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+    </ScrollView>
 </RelativeLayout>

@@ -1,14 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".MainApp.MainAddFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".MainApp.MainAddFragment"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/layoutPadding"
+    android:background="@drawable/bg_bottomsheet">
 
-    <!-- TODO: Update blank fragment layout -->
+<!--    TODO : change recipe and ideal goals -->
+    <View
+        android:layout_width="80dp"
+        android:layout_height="1.5dp"
+        android:layout_gravity="center"
+        android:layout_marginVertical="@dimen/viewPadding"
+        android:background="@drawable/divider_subview_padding"/>
+
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Add" />
+        android:layout_height="wrap_content"
+        style="?attr/textAppearanceSubtitle1"
+        android:textColor="?attr/colorOnPrimary"
+        android:text="What would you like to do?"
+        android:paddingHorizontal="@dimen/layoutPadding"
+        android:paddingVertical="@dimen/viewPadding" />
 
-</FrameLayout>
+    <LinearLayout
+        android:id="@+id/add_recipe"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:foreground="?attr/selectableItemBackground"
+        android:orientation="horizontal"
+        android:paddingHorizontal="48dp"
+        android:paddingVertical="@dimen/viewPadding">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="32dp"
+            android:src="@drawable/ic_chef"
+            app:tint="@color/default_gray"
+            android:background="@drawable/bg_drawable_corner"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="Add New Recipe"
+            android:textColor="@color/default_gray"
+            android:textSize="16sp"
+            style="?attr/textAppearanceSubtitle2" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/add_shoppinglist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:foreground="?attr/selectableItemBackground"
+        android:orientation="horizontal"
+        android:paddingHorizontal="48dp"
+        android:paddingVertical="@dimen/viewPadding">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="32dp"
+            android:src="@drawable/ic_shoppinglist"
+            app:tint="@color/default_gray"
+            android:background="@drawable/bg_drawable_corner"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="Add Shopping List"
+            android:textColor="@color/default_gray"
+            android:textSize="16sp"
+            style="?attr/textAppearanceSubtitle2" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/add_calculate_goals"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:foreground="?attr/selectableItemBackground"
+        android:orientation="horizontal"
+        android:paddingHorizontal="48dp"
+        android:paddingVertical="@dimen/viewPadding">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="32dp"
+            android:src="@drawable/ic_goals"
+            app:tint="@color/default_gray"
+            android:background="@drawable/bg_drawable_corner"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="Calculate Ideal Goals"
+            android:textColor="@color/default_gray"
+            android:textSize="16sp"
+            style="?attr/textAppearanceSubtitle2" />
+    </LinearLayout>
+</LinearLayout>

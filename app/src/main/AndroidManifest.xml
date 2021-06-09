@@ -16,18 +16,26 @@
         android:theme="@style/Theme.Foodine"
         android:usesCleartextTraffic="true"
         android:windowSoftInputMode="adjustPan">
-        <activity android:name=".MainApp.MainActivity"
-                  android:noHistory="true"/>
-        <activity android:name=".SetGoals.GoalsActivity"
-                  android:noHistory="true"/>
-        <activity android:name=".SignInUp.SignActivity"
-                  android:noHistory="true"/>
-        <activity android:name=".SignInUp.OnBoarding.OnBoardingActivity"
-                  android:noHistory="true" />
-        <activity android:name=".SplashScreenActivity"
-                  android:noHistory="true">
+        <activity android:name=".MainApp.Add.AddShoppinglistActivity"></activity>
+        <activity android:name=".MainApp.Add.AddRecipeActivity" />
+        <activity android:name=".MainApp.Add.AddCalculateGoalsActivity" />
+        <activity
+            android:name=".MainApp.MainActivity"/>
+        <activity
+            android:name=".Goals.GoalsActivity"
+            android:noHistory="true" />
+        <activity
+            android:name=".SignInUp.SignActivity"
+            android:noHistory="true" />
+        <activity
+            android:name=".SignInUp.OnBoarding.OnBoardingActivity"
+            android:noHistory="true" />
+        <activity
+            android:name=".SplashScreenActivity"
+            android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainApp.Add.AddRecipeActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/add_recipe_topbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        app:elevation="0dp"
+        android:outlineProvider="none">
+
+        <include
+            android:id="@+id/add_recipe_statusbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            layout="@layout/transparent_status_bar" />
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/add_recipe_topbar_menu"
+            style="@style/Widget.MaterialComponents.Toolbar.Primary"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            android:layout_alignParentEnd="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="end"
+            app:menu="@menu/menu_for_back_only"
+            app:titleTextColor="@color/white"
+            android:outlineProvider="none"/>
+    </com.google.android.material.appbar.AppBarLayout>
+
+</RelativeLayout>

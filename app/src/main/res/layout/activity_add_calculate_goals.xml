@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainApp.Add.AddCalculateGoalsActivity"
+    android:orientation="vertical"
+    android:background="?attr/colorPrimary">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/add_calculate_goals_topbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        app:elevation="0dp"
+        android:outlineProvider="none">
+
+        <include
+            android:id="@+id/add_calculate_goals_statusbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            layout="@layout/transparent_status_bar" />
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/add_calculate_goals_topbar_menu"
+            style="@style/Widget.MaterialComponents.Toolbar.Primary"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            android:layout_alignParentEnd="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="end"
+            app:menu="@menu/menu_for_back_only"
+            app:titleTextColor="@color/white"
+            android:outlineProvider="none"/>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/viewPadding">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:showDividers="middle"
+            android:divider="@drawable/divider_subview_padding">
+
+            <RelativeLayout
+                android:id="@+id/add_calculate_goals_profile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_cardview"
+                android:padding="@dimen/viewPadding"
+                android:elevation="8dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Current Condition"
+                    style="?attr/textAppearanceSubtitle1"/>
+
+                <Button
+                    android:id="@+id/goals_next_button"
+                    android:text="Submit"
+                    style="@style/AppTextAppearance.Button"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentEnd="true"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/add_calculate_goals_result"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_cardview"
+                android:padding="@dimen/viewPadding"
+                android:elevation="8dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Result"
+                    style="?attr/textAppearanceSubtitle1"/>
+            </RelativeLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

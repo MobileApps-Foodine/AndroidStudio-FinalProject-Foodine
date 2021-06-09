@@ -2,56 +2,45 @@ package com.projectakhir.foodine.SignInUp
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import android.widget.LinearLayout
 import androidx.navigation.fragment.findNavController
+import com.projectakhir.foodine.AllMethod.capitalizeWords
 import com.projectakhir.foodine.AllMethod.clearFocusableAllEditText
 import com.projectakhir.foodine.AllMethod.resetErrorEdittext
 import com.projectakhir.foodine.R
-import com.projectakhir.foodine.SetGoals.GoalsActivity
+import com.projectakhir.foodine.Goals.GoalsActivity
+import com.projectakhir.foodine.Goals.setGoal
 import kotlinx.android.synthetic.main.activity_sign_in_up.*
+import kotlinx.android.synthetic.main.fragment_sign_in.view.*
 import kotlinx.android.synthetic.main.fragment_sign_up.view.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
 class SignUpFragment : Fragment() {
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-
-        (activity as SignActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        (activity as SignActivity).supportActionBar?.setDisplayShowHomeEnabled(true)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_sign_up, container, false)
+        (activity as SignActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        (activity as SignActivity).supportActionBar?.setDisplayShowHomeEnabled(true)
 
         val input_name = view.signup_input_name
         val input_email = view.signup_input_email
         val input_password = view.signup_input_password
         val input_confirm = view.signup_input_passwordConfirm
+        val txt_signIn = view.signup_txtClick_signIn
 
         resetErrorEdittext(view.signup_layout_name, input_name)
         resetErrorEdittext(view.signup_layout_email, input_email)
         resetErrorEdittext(view.signup_layout_password, input_password)
         resetErrorEdittext(view.signup_layout_passwordConfirm, input_confirm)
+
+        txt_signIn.setOnClickListener {
+            (activity as SignActivity).onSupportNavigateUp()
+        }
 
         view.signup_btn_signUp.setOnClickListener {
             clearFocusableAllEditText(arrayListOf(input_name, input_email, input_password, input_confirm))
@@ -66,8 +55,9 @@ class SignUpFragment : Fragment() {
                 input_password.text.toString().isNotEmpty() &&
                 input_confirm.text.toString().isNotEmpty() &&
                 checkPassword) {
+                //TODO : send data to database
 
-//                TODO : send data to database
+                setGoal.name = (input_name.text.toString()).capitalizeWords()
                 val intent = Intent(activity, GoalsActivity::class.java)
                 startActivity(intent)
 //                val userInfo = UserInfo(userName = input_name.text.toString(),
@@ -123,16 +113,5 @@ class SignUpFragment : Fragment() {
             }
         }
         return view
-    }
-
-    companion object {
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            SignUpFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
     }
 }

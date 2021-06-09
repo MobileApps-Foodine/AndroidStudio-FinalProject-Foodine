@@ -9,12 +9,12 @@
     style="@style/loginParent">
 
     <LinearLayout
-        android:id="@+id/signinup_topbar_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_alignParentTop="true">
         <LinearLayout
             style="@style/parent"
+            android:background="@drawable/shape_login"
             android:orientation="vertical">
 
             <com.google.android.material.appbar.AppBarLayout
@@ -39,20 +39,33 @@
                     android:layout_gravity="end"
                     app:menu="@menu/menu_for_back_only"
                     app:titleTextColor="@color/white"
-                    android:outlineProvider="none" />
+                    android:outlineProvider="none"/>
 
             </com.google.android.material.appbar.AppBarLayout>
+
+            <ImageView
+                style="@style/parent"
+                android:background="@drawable/wave_sign_in_up"
+                android:contentDescription="login background"/>
         </LinearLayout>
     </LinearLayout>
 
-
-    <fragment
-        android:id="@+id/nav_host_fragment"
-        android:name="androidx.navigation.fragment.NavHostFragment"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:defaultNavHost="true"
-        app:navGraph="@navigation/nav_sign_in_up"
-        android:layout_below="@id/signinup_topbar_layout" />
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical"
+        android:layout_marginTop="40dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="30dp">
+
+        <fragment
+            android:id="@+id/nav_host_fragment"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:defaultNavHost="true"
+            app:navGraph="@navigation/nav_sign_in_up" />
+    </LinearLayout>
 
 </RelativeLayout>

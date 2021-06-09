@@ -19,3 +19,5 @@ fun resetErrorEdittext(editTextInputLayout: TextInputLayout, editText: TextInput
 fun clearFocusableAllEditText(editText: ArrayList<TextInputEditText>){
     editText.forEach { it.clearFocus() }
 }
+
+fun String.capitalizeWords(): String = split(" ").map { it.capitalize() }.joinToString(" ")

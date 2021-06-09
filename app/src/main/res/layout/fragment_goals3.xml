@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SetGoals.Goals3Fragment">
+    tools:context=".Goals.Goals3Fragment">
 
 <!--    TODO : make edittext with color -->
     <LinearLayout
@@ -32,8 +32,19 @@
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:src="@mipmap/logo_launcher_round"
-                android:layout_centerVertical="true"
-                android:layout_margin="@dimen/viewPadding"/>
+                android:layout_margin="@dimen/viewPadding"
+                android:contentDescription="TODO" />
+
+            <TextView
+                android:id="@+id/goals_profile_name"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/goals_profile_gender"
+                android:layout_marginHorizontal="12dp"
+                android:text="Name"
+                style="?attr/textAppearanceSubtitle2"
+                android:textColor="?attr/colorPrimary"
+                android:textAlignment="center"/>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/goals_profile_age"

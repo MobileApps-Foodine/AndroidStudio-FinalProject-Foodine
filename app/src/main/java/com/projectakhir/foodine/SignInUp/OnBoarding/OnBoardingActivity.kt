@@ -35,7 +35,7 @@ class OnBoardingActivity : AppCompatActivity() {
                3 -> OnBoarding4Fragment()
                else -> OnBoarding4Fragment()
            }
-            return  onBoard!!
+            return onBoard
         }
 
     }

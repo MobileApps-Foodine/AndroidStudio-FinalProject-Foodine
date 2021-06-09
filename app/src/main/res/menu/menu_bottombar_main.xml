@@ -5,25 +5,25 @@
     <item
         android:id="@+id/mainHomeFragment"
         android:icon="@drawable/ic_home"
-        android:title="Home" />
+        android:title="•" />
 
     <item
         android:id="@+id/mainDiscoverFragment"
         android:icon="@drawable/ic_discover"
-        android:title="Discover" />
+        android:title="•" />
 
     <item
         android:id="@+id/mainAddFragment"
         android:icon="@drawable/ic_add"
-        android:title="Add" />
+        android:title="•" />
 
     <item
         android:id="@+id/mainShoppinglistFragment"
         android:icon="@drawable/ic_shoppinglist"
-        android:title="Shopping List" />
+        android:title="•" />
 
     <item
         android:id="@+id/mainProfileFragment"
         android:icon="@drawable/ic_profile"
-        android:title="Profile" />
+        android:title="•" />
 </menu>
