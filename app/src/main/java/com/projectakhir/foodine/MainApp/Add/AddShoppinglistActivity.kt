@@ -14,7 +14,6 @@ class AddShoppinglistActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_shoppinglist)
 
-        setSupportActionBar(add_shoppinglist_topbar_menu)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(false)
         supportActionBar?.title = "Add Shoppinglist"

@@ -14,7 +14,7 @@ class MainDiscoverFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_main_discover, container, false)
         (activity as MainActivity).supportActionBar?.title = "Discover"
-//        (activity as MainActivity).topbarSettings.isVisible = false
+        (activity as MainActivity).drawerLocked()
 
         return view
     }

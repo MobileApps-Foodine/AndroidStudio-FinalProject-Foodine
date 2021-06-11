@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainApp.SettingsDrawer.SettingsFeedbackActivity"
+    android:layout_margin="@dimen/layoutPadding"
+    android:orientation="vertical"
+    android:divider="@drawable/divider_subview_padding"
+    android:showDividers="middle">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Did you like Foodine?"
+        style="?attr/textAppearanceHeadline5"
+        android:textStyle="bold"
+        android:textAlignment="center"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Let us know what you think"
+        style="?attr/textAppearanceSubtitle1"
+        android:textAlignment="center"
+        android:layout_marginBottom="10dp"/>
+
+    <androidx.appcompat.widget.AppCompatRatingBar
+        android:id="@+id/settings_feeedback_ratingbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="?android:attr/ratingBarStyle"
+        android:numStars="5"
+        android:stepSize="0.1"
+        android:isIndicator="false"
+        android:layout_gravity="center" />
+
+    <TextView
+        android:id="@+id/settings_feedback_ratingtxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Awesome!"
+        style="?attr/textAppearanceBody2"
+        android:textAlignment="center"
+        android:layout_marginBottom="@dimen/viewPadding"
+        android:layout_marginTop="-12dp"/>
+
+    <com.hanks.lineheightedittext.LineHeightEditText
+        android:id="@+id/settings_feedback_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="200dp"
+        android:background="@drawable/bg_drawable_corner"
+        style="?attr/textAppearanceBody1"
+        android:gravity="top"
+        android:importantForAutofill="no"
+        android:includeFontPadding="false"
+        android:inputType="textMultiLine"
+        android:scrollHorizontally="false"
+        android:hint="@string/feedback_edittext"
+        android:lineSpacingExtra="4dp"
+        app:cursorHeight="6dp"
+        android:padding="@dimen/layoutPadding" />
+
+    <Button
+        android:id="@+id/settings_feedback_send"
+        style="@style/AppTextAppearance.Button"
+        android:layout_width="match_parent"
+        android:text="send" />
+</LinearLayout>

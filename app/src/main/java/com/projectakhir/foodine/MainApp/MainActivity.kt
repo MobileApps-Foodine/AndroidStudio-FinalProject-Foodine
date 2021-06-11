@@ -1,67 +1,76 @@
 package com.projectakhir.foodine.MainApp
 
 import android.content.Context
-import android.content.DialogInterface
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.MotionEvent
 import android.view.inputmethod.InputMethodManager
+import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import cn.pedant.SweetAlert.SweetAlertDialog
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.navigation.NavigationView
+import com.projectakhir.foodine.BuildConfig
 import com.projectakhir.foodine.MainApp.Add.AddCalculateGoalsActivity
+import com.projectakhir.foodine.MainApp.SettingsDrawer.*
 import com.projectakhir.foodine.R
 import com.projectakhir.foodine.SignInUp.SignActivity
-import kotlinx.android.synthetic.main.activity_goals.*
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+
+class MainActivity : AppCompatActivity(), DrawerInterface{
+    private lateinit var drawerLayout : DrawerLayout
     private lateinit var actionBarToggle : ActionBarDrawerToggle
-    lateinit var topbarSettings : MenuItem
-
-    fun isTopBarSettingsInitialized():Boolean{
-        return this::topbarSettings.isInitialized
-    }
-
-//    override fun onStart() {
-//        super.onStart()
-//        topbarSettings.isVisible = when(main_nav_host_fragment.findNavController().currentDestination!!.id){
-//            R.id.mainProfileFragment -> true
-//            else -> false
-//        }
-//    }
+    private lateinit var bottomBar : BottomNavigationView
+    private lateinit var navHostFragment : NavHostFragment
+    private lateinit var drawerNavigation : NavigationView
+    private lateinit var topBarSettings : MenuItem
+    var drawerLock : Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //Top Bar
-        setSupportActionBar(main_topbar_menu)
-        topbarSettings = main_topbar_menu.menu.findItem(R.id.topbar_settings)
-        topbarSettings.isEnabled = false
-
         //Bottom Bar
-        val navController = findNavController(R.id.main_nav_host_fragment)
-        main_bottombar_menu.setupWithNavController(navController)
+        bottomBar = findViewById(R.id.main_bottombar_menu)
+        navHostFragment = supportFragmentManager.findFragmentById(R.id.main_nav_host_fragment) as NavHostFragment
+        val navController = navHostFragment.navController
+        bottomBar.setupWithNavController(navController)
 
         //Drawer
-        actionBarToggle = ActionBarDrawerToggle(this, main_drawer_layout, 0,0)
-        main_drawer_layout.addDrawerListener(actionBarToggle)
+        drawerLayout = findViewById(R.id.main_drawer_layout)
+        drawerNavigation = findViewById(R.id.main_drawer_navigation)
+        actionBarToggle = ActionBarDrawerToggle(this, drawerLayout, 0,0)
+        drawerLayout.addDrawerListener(actionBarToggle)
         actionBarToggle.syncState()
-        main_drawer_navigation.setNavigationItemSelectedListener {
+        drawerNavigation.setNavigationItemSelectedListener {
             when(it.itemId) {
                 R.id.settings_update_goals -> {
                     val intent = Intent(this, AddCalculateGoalsActivity::class.java)
                     intent.putExtra("sendData", true)
                     startActivity(intent)
+                    true
+                }
+                R.id.settings_account-> {
+                    startActivity(Intent(this, SettingsAccountActivity::class.java))
+                    true
+                }
+                R.id.settings_feedback -> {
+                    startActivity(Intent(this, SettingsFeedbackActivity::class.java))
+                    true
+                }
+                R.id.settings_about -> {
+                    startActivity(Intent(this, SettingsAboutActivity::class.java))
                     true
                 }
                 R.id.setting_logout -> {
@@ -73,25 +82,35 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-    }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_topbar_main, menu)
-        return true
+//        val logoutItem = drawerNavigation.menu.findItem(R.id.setting_logout)
+//        val logoutTitle = SpannableString(logoutItem.title)
+//        logoutTitle.setSpan(TextAppearanceSpan(this, R.style.LogoutTextAppearance), 0, logoutTitle.length, 0)
+//        logoutItem.title = logoutTitle
+
+        val versionText = findViewById<TextView>(R.id.settings_version)
+        versionText.text = BuildConfig.VERSION_NAME
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId) {
-            R.id.topbar_settings -> { //TODO : hide settings except in Profile
-                if(this.main_drawer_layout.isDrawerOpen(GravityCompat.END)){
-                    this.main_drawer_layout.closeDrawer(GravityCompat.END)
+            R.id.topbar_settings -> {
+                if(this.drawerLayout.isDrawerOpen(GravityCompat.END)){
+                    this.drawerLayout.closeDrawer(GravityCompat.END)
                 }
                 else{
-                    this.main_drawer_layout.openDrawer(GravityCompat.END)
+                    this.drawerLayout.openDrawer(GravityCompat.END)
                 }
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_topbar_main, menu)
+        topBarSettings = menu.findItem(R.id.topbar_settings)
+        topBarSettings.isVisible = drawerLock != true
+        return true
     }
 
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
@@ -109,23 +128,31 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun logoutDialog(){
-        //TODO : correct dialog
-        val builder = MaterialAlertDialogBuilder(this, R.style.AlertDialogTheme)
-        builder.setTitle("Delete Record")
-        builder.setMessage("Are you sure?")
-        builder.setCancelable(false)
+        val alertDialog = SweetAlertDialog(this@MainActivity, SweetAlertDialog.WARNING_TYPE)
+        alertDialog.setContentText("Are you sure want to log out?")
+            .setConfirmText("Logout")
+            .setConfirmClickListener {
+                it.dismissWithAnimation()
+                Toast.makeText(this, "Logged out", Toast.LENGTH_SHORT).show()
+                startActivity(Intent(this, SignActivity::class.java))
+            }
+            .setCancelButton(
+                "Cancel"
+            ) { it.dismissWithAnimation() }
+            .show()
 
-        builder.setPositiveButton("Yes"){ dialog: DialogInterface, which ->
-            //TODO : send api then delete sqlite
-            Toast.makeText(this, "Record Deleted", Toast.LENGTH_SHORT).show()
-            dialog.dismiss()
-            startActivity(Intent(this, SignActivity::class.java))
-        }
+        val cancelBtn = alertDialog.findViewById<Button>(R.id.cancel_button)
+        cancelBtn.setBackgroundColor(ContextCompat.getColor(this@MainActivity, R.color.transparent_black))
+        cancelBtn.setTextColor(ContextCompat.getColor(this@MainActivity, R.color.prim_green))
+    }
 
-        builder.setNegativeButton("No"){dialog:DialogInterface, which ->
-            dialog.dismiss()
-        }
+    override fun drawerLocked() {
+        drawerLock = true
+        invalidateOptionsMenu()
+    }
 
-        builder.show()
+    override fun drawerUnlocked() {
+        drawerLock = false
+        invalidateOptionsMenu()
     }
 }

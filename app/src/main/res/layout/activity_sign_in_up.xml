@@ -8,51 +8,11 @@
     tools:context=".SignInUp.SignActivity"
     style="@style/loginParent">
 
-    <LinearLayout
-        android:id="@+id/signinup_topbar_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true">
-        <LinearLayout
-            style="@style/parent"
-            android:orientation="vertical">
-
-            <com.google.android.material.appbar.AppBarLayout
-                android:id="@+id/signinup_topbar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:elevation="0dp">
-
-                <include
-                    android:id="@+id/signinup_statusbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    layout="@layout/transparent_status_bar" />
-
-                <com.google.android.material.appbar.MaterialToolbar
-                    android:id="@+id/signinup_topbar_menu"
-                    style="@style/Widget.MaterialComponents.Toolbar.Primary"
-                    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-                    android:layout_alignParentEnd="true"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="end"
-                    app:menu="@menu/menu_for_back_only"
-                    app:titleTextColor="@color/white"
-                    android:outlineProvider="none" />
-
-            </com.google.android.material.appbar.AppBarLayout>
-        </LinearLayout>
-    </LinearLayout>
-
-
     <fragment
         android:id="@+id/nav_host_fragment"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:defaultNavHost="true"
-        app:navGraph="@navigation/nav_sign_in_up"
-        android:layout_below="@id/signinup_topbar_layout" />
-
+        app:navGraph="@navigation/nav_sign_in_up"/>
 </RelativeLayout>

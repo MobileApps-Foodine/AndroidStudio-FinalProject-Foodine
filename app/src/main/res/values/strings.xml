@@ -1,4 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Foodine</string>
+    <string name="app_desc">
+        Foodine will help you to live healthy in easy way. You can calculate your foods nutrition based on your recipes and plan your meal for next day. So you can find out how much calories to take and burn everyday based on your condition and ideal goals!
+        \n\nRun out of ingredients to cook your desire food? Foodine also equipped by shopping list, so it will help you to remind what should you buy next time!
+        \n\nTo get started, input your profile details and we will determine best ideal goals for you. We will inform your daily calories needed based on that, so you can easily track your food and reach your goals soon.
+    </string>
+
+    <string name="enter">\n</string>
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="feedback_edittext">Write your question or feedback here. We\'d love to hear from you</string>
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer euismod volutpat metus, quis sagittis mauris suscipit id. Vestibulum bibendum pulvinar auctor. Phasellus sed rutrum nunc, at cursus purus. Nam vulputate semper leo vel bibendum. Mauris interdum convallis dolor mollis venenatis. Fusce quam velit, efficitur ut leo sit amet, viverra ultrices dui. Sed nec nisl a purus pharetra vehicula et ut est. Phasellus interdum faucibus rhoncus. Sed ac rhoncus velit, vitae rhoncus augue. Fusce blandit turpis eget turpis finibus venenatis. Vivamus ac elit in eros hendrerit viverra sed eu elit. Fusce sodales magna in blandit faucibus.</string>
 </resources>

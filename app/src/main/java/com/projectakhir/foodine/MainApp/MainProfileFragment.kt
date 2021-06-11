@@ -14,7 +14,7 @@ class MainProfileFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_main_profile, container, false)
         (activity as MainActivity).supportActionBar?.title = "Profile"
-//        (activity as MainActivity).topbarSettings.isVisible = true
+        (activity as MainActivity).drawerUnlocked()
 
         return view
     }

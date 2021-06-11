@@ -12,41 +12,14 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/main_topbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="top"
-            app:elevation="0dp"
-            android:outlineProvider="none">
 
-            <include
-                android:id="@+id/signinup_statusbar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                layout="@layout/transparent_status_bar" />
-
-            <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/main_topbar_menu"
-                style="@style/Widget.MaterialComponents.Toolbar.Primary"
-                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-                android:layout_alignParentEnd="true"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="end"
-                app:menu="@menu/menu_topbar_main"
-                app:titleTextColor="@color/white"
-                android:outlineProvider="none"/>
-        </com.google.android.material.appbar.AppBarLayout>
-
-        <fragment
+        <androidx.fragment.app.FragmentContainerView
             android:id="@+id/main_nav_host_fragment"
-            class="androidx.navigation.fragment.NavHostFragment"
+            android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:defaultNavHost="true"
             app:navGraph="@navigation/nav_main_app"
-            android:layout_below="@id/main_topbar"
             android:layout_above="@id/main_bottombar_menu"
             android:layout_margin="@dimen/viewPadding"/>
 
@@ -64,6 +37,29 @@
         android:layout_width="250dp"
         android:layout_height="match_parent"
         app:menu="@menu/drawercontent_settings"
-        android:layout_gravity="right"
-        app:headerLayout="@layout/drawer_header_main_activity"/>
+        android:layout_gravity="right">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:clickable="false"
+            android:focusable="false"
+            android:layout_margin="@dimen/layoutPadding">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:text="Version" />
+
+            <TextView
+                android:id="@+id/settings_version"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:gravity="right"
+                android:text="versionName"/>
+
+        </RelativeLayout>
+    </com.google.android.material.navigation.NavigationView>
 </androidx.drawerlayout.widget.DrawerLayout>

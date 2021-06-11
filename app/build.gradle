@@ -14,7 +14,7 @@ android {
         minSdkVersion 26
         targetSdkVersion 30
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -54,7 +54,11 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+
     implementation 'com.synnapps:carouselview:0.1.4'
+
+
     //noinspection GradleDependency
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     //noinspection GradleDependency
@@ -81,4 +85,8 @@ dependencies {
     implementation 'com.shuhart.stepview:stepview:1.5.1'
     implementation 'com.kevalpatel2106:ruler-picker:1.1'
     implementation 'com.neobaran.open:ruler-view:0.0.5'
+    implementation 'com.github.f0ris.sweetalert:library:1.5.6'
+    implementation 'com.hanks:lineheightedittext-library:1.0'
+    implementation 'io.github.medyo:android-about-page:2.0.0'
+    implementation 'com.karumi:dexter:6.2.2'
 }

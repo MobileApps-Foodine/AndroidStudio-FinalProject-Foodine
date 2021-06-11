@@ -14,7 +14,7 @@ class MainShoppinglistFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_main_shoppinglist, container, false)
         (activity as MainActivity).supportActionBar?.title = "Shoppinglist"
-//        (activity as MainActivity).topbarSettings.isVisible = false
+        (activity as MainActivity).drawerLocked()
 
         return view
     }

@@ -6,9 +6,6 @@ import android.os.Bundle
 import android.view.MotionEvent
 import android.view.inputmethod.InputMethodManager
 import com.projectakhir.foodine.R
-import kotlinx.android.synthetic.main.activity_add_calculate_goals.*
-import kotlinx.android.synthetic.main.activity_add_shoppinglist.*
-import kotlinx.android.synthetic.main.activity_add_shoppinglist.add_shoppinglist_topbar_menu
 
 class AddCalculateGoalsActivity : AppCompatActivity() {
     private var sendData : Boolean?= null
@@ -17,10 +14,10 @@ class AddCalculateGoalsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_calculate_goals)
 
-        setSupportActionBar(add_calculate_goals_topbar_menu)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(false)
         supportActionBar?.title = "Calculate Goals"
+        supportActionBar?.elevation = 0.0f
 
         sendData = intent.getBooleanExtra("sendData", false)
         //TODO : will send data (putBooleanExtra as identifier will send data or not)

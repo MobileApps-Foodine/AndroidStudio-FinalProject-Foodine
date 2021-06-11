@@ -72,7 +72,7 @@ class SignUpFragment : Fragment() {
 //                    override fun onResponse(call: Call<SuccessResponse>?, response: Response<SuccessResponse>?) {
 //                        if (response!!.isSuccessful) {
 //                            loadingBar!!.visibility = View.GONE
-//                            Toast.makeText(activity, "Registration successfull.", Toast.LENGTH_LONG).show()
+//                            Toast.makeText(activity, "Registration successfull", Toast.LENGTH_LONG).show()
 //                            nav_host_fragment.findNavController().navigate(R.id.action_signUpFragment_to_signInFragment)
 //                        } else {
 //                            loadingBar!!.visibility = View.GONE
@@ -96,19 +96,19 @@ class SignUpFragment : Fragment() {
 //                })
             } else{
                 if(input_name.text.toString().isEmpty()){
-                    view.signup_layout_name.error = "Name cannot be null or empty."
+                    view.signup_layout_name.error = "Name cannot be null or empty"
                 }
                 if(input_email.text.toString().isEmpty()){
-                    view.signup_layout_email.error = "Email cannot be null or empty."
+                    view.signup_layout_email.error = "Email cannot be null or empty"
                 }
                 if(input_password.text.toString().isEmpty()){
-                    view.signup_layout_password.error = "Password cannot be null or empty."
+                    view.signup_layout_password.error = "Password cannot be null or empty"
                 }
                 if(input_confirm.text.toString().isEmpty()){
-                    view.signup_layout_passwordConfirm.error = "Confirm password cannot be null or empty."
+                    view.signup_layout_passwordConfirm.error = "Confirm password cannot be null or empty"
                 }
                 if(!checkPassword){
-                    view.signup_layout_passwordConfirm.error = "Password and Confirm Password do not match."
+                    view.signup_layout_passwordConfirm.error = "Password and Confirm Password do not match"
                 }
             }
         }

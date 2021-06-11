@@ -14,7 +14,6 @@ class AddRecipeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_recipe)
 
-        setSupportActionBar(add_recipe_topbar_menu)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(false)
         supportActionBar?.title = "Add Recipe"

@@ -20,19 +20,7 @@ class MainHomeFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_main_home, container, false)
         (activity as MainActivity).supportActionBar?.title = "Foodine"
-//        (requireActivity() as MainActivity).topbarSettings.setVisible(false)
-
-        if((activity as MainActivity).isTopBarSettingsInitialized()){
-            Toast.makeText(requireActivity(), (activity as MainActivity).topbarSettings.toString(), Toast.LENGTH_SHORT).show()
-            (activity as MainActivity).topbarSettings.isEnabled = false
-        } else{
-            Toast.makeText(requireActivity(), "abc", Toast.LENGTH_SHORT).show()
-        }
-
-
-//        if (activity is MainActivity){
-//            (activity as? MainActivity)!!.topbarSettings.isVisible = false
-//        }
+        (activity as MainActivity).drawerLocked()
 
         return view
     }

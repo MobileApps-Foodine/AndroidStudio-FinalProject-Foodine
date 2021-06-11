@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.projectakhir.foodine">
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -13,31 +15,41 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/logo_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Foodine"
+        android:theme="@style/Theme.Foodine.ActionBar"
         android:usesCleartextTraffic="true"
         android:windowSoftInputMode="adjustPan">
-        <activity android:name=".MainApp.Add.AddShoppinglistActivity"></activity>
+        <activity android:name=".MainApp.SettingsDrawer.SettingsAccountActivity">
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+        </activity>
+        <activity android:name=".MainApp.SettingsDrawer.SettingsAboutActivity" />
+        <activity android:name=".MainApp.SettingsDrawer.SettingsFeedbackActivity" />
+        <activity android:name=".MainApp.Add.AddShoppinglistActivity" />
         <activity android:name=".MainApp.Add.AddRecipeActivity" />
         <activity android:name=".MainApp.Add.AddCalculateGoalsActivity" />
-        <activity
-            android:name=".MainApp.MainActivity"/>
+        <activity android:name=".MainApp.MainActivity" />
         <activity
             android:name=".Goals.GoalsActivity"
-            android:noHistory="true" />
+            android:noHistory="true"
+            android:theme="@style/Theme.Foodine.NoActionBar" />
         <activity
             android:name=".SignInUp.SignActivity"
             android:noHistory="true" />
         <activity
             android:name=".SignInUp.OnBoarding.OnBoardingActivity"
-            android:noHistory="true" />
+            android:noHistory="true"
+            android:theme="@style/Theme.Foodine.NoActionBar" />
         <activity
             android:name=".SplashScreenActivity"
-            android:noHistory="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:noHistory="true"
+            android:theme="@style/Theme.Foodine.NoActionBar">
+             <intent-filter>
+                 <action android:name="android.intent.action.MAIN" />
+                 <category android:name="android.intent.category.LAUNCHER" />
+             </intent-filter>
         </activity>
 
         <meta-data

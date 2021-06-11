@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:title="Account Settings"
+        android:id="@+id/account_settings">
+        <menu>
+            <group>
+                <item
+                    android:id="@+id/account_email"
+                    android:title="Email"/>
+
+                <item
+                    android:id="@+id/account_password"
+                    android:title="Password"/>
+
+                <item
+                    android:id="@+id/account_delete"
+                    android:title="Delete Account"/>
+            </group>
+        </menu>
+    </item>
+</menu>

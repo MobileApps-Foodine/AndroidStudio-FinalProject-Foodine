@@ -15,8 +15,8 @@ class SignActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_in_up)
 
-        signinup_topbar_menu.title = ""
-        setSupportActionBar(signinup_topbar_menu)
+        supportActionBar?.title=""
+        supportActionBar?.elevation=0.0f
         if(intent.getBooleanExtra("fromOnBoarding", false) == true){
             nav_host_fragment.findNavController().navigate(R.id.action_signInFragment_to_signUpFragment)
         }

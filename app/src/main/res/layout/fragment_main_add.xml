@@ -9,13 +9,12 @@
     android:paddingBottom="@dimen/layoutPadding"
     android:background="@drawable/bg_bottomsheet">
 
-<!--    TODO : change recipe and ideal goals -->
     <View
         android:layout_width="80dp"
         android:layout_height="1.5dp"
         android:layout_gravity="center"
         android:layout_marginVertical="@dimen/viewPadding"
-        android:background="@drawable/divider_subview_padding"/>
+        android:background="@color/default_gray"/>
 
     <TextView
         android:layout_width="match_parent"

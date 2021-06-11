@@ -66,7 +66,7 @@ class SignInFragment : Fragment() {
 //                        if (response!!.isSuccessful) {
 //                            loadingBar!!.visibility = View.GONE
 //                            apiToken = response.body()?.userAPItoken!!
-//                            Toast.makeText(activity, "Login successfull.", Toast.LENGTH_LONG).show()
+//                            Toast.makeText(activity, "Login successfull", Toast.LENGTH_LONG).show()
 //                            val intent = Intent(activity, MainActivity::class.java)
 //                            startActivity(intent)
 //                        } else {
@@ -92,10 +92,10 @@ class SignInFragment : Fragment() {
             }
             else{
                 if(input_email.text.toString().isEmpty()){
-                    view.signin_layout_email.error = "Email cannot be null or empty."
+                    view.signin_layout_email.error = "Email cannot be null or empty"
                 }
                 if(input_password.text.toString().isEmpty()){
-                    view.signin_layout_password.error = "Password cannot be null or empty."
+                    view.signin_layout_password.error = "Password cannot be null or empty"
                 }
             }
         }
