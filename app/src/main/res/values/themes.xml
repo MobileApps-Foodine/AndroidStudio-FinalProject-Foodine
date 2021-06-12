@@ -18,6 +18,7 @@
         <item name="shapeAppearanceLargeComponent">@style/AppShapeAppearance.LargeComponent</item>
         <item name="android:actionMenuTextColor">@color/default_gray</item>
         <item name="aboutStyle">@style/Widget.App.AboutPage</item>
+        <item name="actionMenuTextColor">@color/white</item>
     </style>
 
     <style name="Theme.Foodine.ActionBar" parent="@style/Theme.Foodine">
