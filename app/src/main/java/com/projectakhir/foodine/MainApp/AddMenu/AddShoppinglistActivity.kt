@@ -1,4 +1,4 @@
-package com.projectakhir.foodine.MainApp.Add
+package com.projectakhir.foodine.MainApp.AddMenu
 
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
@@ -6,17 +6,15 @@ import android.os.Bundle
 import android.view.MotionEvent
 import android.view.inputmethod.InputMethodManager
 import com.projectakhir.foodine.R
-import kotlinx.android.synthetic.main.activity_add_recipe.*
-import kotlinx.android.synthetic.main.activity_add_shoppinglist.*
 
-class AddRecipeActivity : AppCompatActivity() {
+class AddShoppinglistActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_add_recipe)
+        setContentView(R.layout.activity_add_shoppinglist)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(false)
-        supportActionBar?.title = "Add Recipe"
+        supportActionBar?.title = "Add Shoppinglist"
     }
 
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {

@@ -27,9 +27,9 @@
         </activity>
         <activity android:name=".MainApp.SettingsDrawer.SettingsAboutActivity" />
         <activity android:name=".MainApp.SettingsDrawer.SettingsFeedbackActivity" />
-        <activity android:name=".MainApp.Add.AddShoppinglistActivity" />
-        <activity android:name=".MainApp.Add.AddRecipeActivity" />
-        <activity android:name=".MainApp.Add.AddCalculateGoalsActivity" />
+        <activity android:name=".MainApp.AddMenu.AddShoppinglistActivity" />
+        <activity android:name=".MainApp.AddMenu.AddRecipeActivity" />
+        <activity android:name=".MainApp.AddMenu.AddCalculateGoalsActivity" />
         <activity android:name=".MainApp.MainActivity" />
         <activity
             android:name=".Goals.GoalsActivity"

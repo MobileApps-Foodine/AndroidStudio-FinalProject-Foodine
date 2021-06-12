@@ -6,6 +6,11 @@ buildscript {
     repositories {
         google()
         mavenCentral()
+        maven { url "https://newtronlabs.jfrog.io/artifactory/libs-release-local"
+            metadataSources {
+                artifact()
+            }
+        }
     }
     dependencies {
         classpath "com.android.tools.build:gradle:4.2.1"
@@ -38,6 +43,11 @@ allprojects {
                     username = githubProperties['gpr.usr'] ?: System.getenv("GPR_USER")
                     password = githubProperties['gpr.key'] ?: System.getenv("GPR_API_KEY")
                 }
+            }
+        }
+        maven { url "https://newtronlabs.jfrog.io/artifactory/libs-release-local"
+            metadataSources {
+                artifact()
             }
         }
     }

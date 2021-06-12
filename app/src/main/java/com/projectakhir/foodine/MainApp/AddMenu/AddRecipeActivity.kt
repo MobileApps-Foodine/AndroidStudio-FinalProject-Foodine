@@ -1,4 +1,4 @@
-package com.projectakhir.foodine.MainApp.Add
+package com.projectakhir.foodine.MainApp.AddMenu
 
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
@@ -7,21 +7,14 @@ import android.view.MotionEvent
 import android.view.inputmethod.InputMethodManager
 import com.projectakhir.foodine.R
 
-class AddCalculateGoalsActivity : AppCompatActivity() {
-    private var sendData : Boolean?= null
-
+class AddRecipeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_add_calculate_goals)
+        setContentView(R.layout.activity_add_recipe)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(false)
-        supportActionBar?.title = "Calculate Goals"
-        supportActionBar?.elevation = 0.0f
-
-        sendData = intent.getBooleanExtra("sendData", false)
-        //TODO : will send data (putBooleanExtra as identifier will send data or not)
-
+        supportActionBar?.title = "Add Recipe"
     }
 
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {

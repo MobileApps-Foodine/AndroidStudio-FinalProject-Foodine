@@ -1,15 +1,14 @@
 package com.projectakhir.foodine.MainApp
 
-import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.projectakhir.foodine.MainApp.Add.AddCalculateGoalsActivity
-import com.projectakhir.foodine.MainApp.Add.AddRecipeActivity
-import com.projectakhir.foodine.MainApp.Add.AddShoppinglistActivity
+import com.projectakhir.foodine.MainApp.AddMenu.AddCalculateGoalsActivity
+import com.projectakhir.foodine.MainApp.AddMenu.AddRecipeActivity
+import com.projectakhir.foodine.MainApp.AddMenu.AddShoppinglistActivity
 import com.projectakhir.foodine.R
 import kotlinx.android.synthetic.main.fragment_main_add.view.*
 

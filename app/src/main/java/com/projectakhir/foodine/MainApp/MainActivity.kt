@@ -21,7 +21,7 @@ import cn.pedant.SweetAlert.SweetAlertDialog
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 import com.projectakhir.foodine.BuildConfig
-import com.projectakhir.foodine.MainApp.Add.AddCalculateGoalsActivity
+import com.projectakhir.foodine.MainApp.AddMenu.AddCalculateGoalsActivity
 import com.projectakhir.foodine.MainApp.SettingsDrawer.*
 import com.projectakhir.foodine.R
 import com.projectakhir.foodine.SignInUp.SignActivity

@@ -1,4 +1,4 @@
-package com.projectakhir.foodine.MainApp.Add
+package com.projectakhir.foodine.MainApp.AddMenu
 
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
@@ -6,17 +6,22 @@ import android.os.Bundle
 import android.view.MotionEvent
 import android.view.inputmethod.InputMethodManager
 import com.projectakhir.foodine.R
-import kotlinx.android.synthetic.main.activity_add_shoppinglist.*
-import kotlinx.android.synthetic.main.activity_goals.*
 
-class AddShoppinglistActivity : AppCompatActivity() {
+class AddCalculateGoalsActivity : AppCompatActivity() {
+    private var sendData : Boolean?= null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_add_shoppinglist)
+        setContentView(R.layout.activity_add_calculate_goals)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(false)
-        supportActionBar?.title = "Add Shoppinglist"
+        supportActionBar?.title = "Calculate Goals"
+        supportActionBar?.elevation = 0.0f
+
+        sendData = intent.getBooleanExtra("sendData", false)
+        //TODO : will send data (putBooleanExtra as identifier will send data or not)
+
     }
 
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
