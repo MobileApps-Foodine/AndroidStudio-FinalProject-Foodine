@@ -130,6 +130,7 @@ class MainActivity : AppCompatActivity(), DrawerInterface{
     fun logoutDialog(){
         val alertDialog = SweetAlertDialog(this@MainActivity, SweetAlertDialog.WARNING_TYPE)
         alertDialog.setContentText("Are you sure want to log out?")
+                //Logout Account
             .setConfirmText("Logout")
             .setConfirmClickListener {
                 it.dismissWithAnimation()

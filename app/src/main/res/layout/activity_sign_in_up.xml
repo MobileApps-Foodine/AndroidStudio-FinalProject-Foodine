@@ -15,4 +15,11 @@
         android:layout_height="match_parent"
         app:defaultNavHost="true"
         app:navGraph="@navigation/nav_sign_in_up"/>
+
+    <include
+        android:id="@+id/signinup_progress"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        layout="@layout/transparent_loading_circular" />
 </RelativeLayout>
