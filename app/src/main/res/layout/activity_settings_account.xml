@@ -87,7 +87,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/account_edit_bio"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 style="@style/Widget.Design.TextInputLayout"
                 app:counterEnabled="true"
                 app:counterMaxLength="255">
@@ -100,6 +100,78 @@
                     android:maxLines="5"
                     android:hint="Bio"/>
             </com.google.android.material.textfield.TextInputLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="1"
+                android:showDividers="middle"
+                android:divider="@drawable/divider_subview_padding">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/account_edit_dob"
+                    android:layout_weight=".5"
+                    android:layout_height="wrap_content"
+                    style="@style/Widget.Design.TextInputLayout"
+                    android:layout_width="0dp">
+
+                    <EditText
+                        android:id="@+id/account_edit_dob_txt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableEnd="@drawable/ic_drop_down"
+                        android:cursorVisible="false"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
+                        android:hint="Date of Birth"
+                        android:inputType="date"
+                        android:singleLine="true" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.addisonelliott.segmentedbutton.SegmentedButtonGroup
+                    android:id="@+id/account_gender_group"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".5"
+                    android:weightSum="2"
+                    android:layout_gravity="center_vertical"
+                    android:layout_margin="4dp"
+                    android:elevation="2dp"
+                    android:background="@color/white"
+                    app:borderColor="@color/default_gray"
+                    app:borderWidth="1dp"
+                    app:divider="@color/default_gray"
+                    app:dividerPadding="10dp"
+                    app:dividerWidth="1dp"
+                    app:position="0"
+                    app:radius="4dp"
+                    app:ripple="true"
+                    app:draggable="true"
+                    app:rippleColor="@color/gray_light"
+                    app:selectedBackground="@color/default_gray">
+
+                    <com.addisonelliott.segmentedbutton.SegmentedButton
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:padding="10dp"
+                        app:selectedTextColor="@color/white"
+                        app:text="Male"
+                        app:textColor="@color/default_gray" />
+
+                    <com.addisonelliott.segmentedbutton.SegmentedButton
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:padding="10dp"
+                        app:drawableGravity="top"
+                        app:selectedTextColor="@color/white"
+                        app:text="Female"
+                        app:textColor="@color/default_gray" />
+                </com.addisonelliott.segmentedbutton.SegmentedButtonGroup>
+            </LinearLayout>
         </LinearLayout>
 
         <com.google.android.material.navigation.NavigationView

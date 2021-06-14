@@ -5,12 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MotionEvent
 import android.view.inputmethod.InputMethodManager
-import android.widget.Button
 import android.widget.RatingBar
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatRatingBar
-import androidx.core.content.ContextCompat
-import cn.pedant.SweetAlert.SweetAlertDialog
 import com.projectakhir.foodine.AllMethod.warningDiscardChange
 import com.projectakhir.foodine.R
 import kotlinx.android.synthetic.main.activity_settings_feedback.*
@@ -39,9 +36,8 @@ class SettingsFeedbackActivity : AppCompatActivity() {
         supportActionBar?.setDisplayShowHomeEnabled(false)
         supportActionBar?.title = "Feedback"
         setRating(5f)
+        settings_feeedback_ratingbar.rating = 5f
 
-
-        //TODO : rating settings
         ratingBar = findViewById(R.id.settings_feeedback_ratingbar)
         ratingBar.onRatingBarChangeListener =
             RatingBar.OnRatingBarChangeListener { ratingBar, rating, fromUser ->

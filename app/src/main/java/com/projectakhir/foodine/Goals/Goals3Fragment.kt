@@ -5,6 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.projectakhir.foodine.AllMethod.defaultProfileImage
+import com.projectakhir.foodine.AllMethod.femaleImage
+import com.projectakhir.foodine.AllMethod.maleImage
 import com.projectakhir.foodine.R
 import kotlinx.android.synthetic.main.fragment_goals3.view.*
 
@@ -24,20 +27,12 @@ class Goals3Fragment : Fragment() {
         val heightText = view.goals_profile_height_editText
         val genderImage = view.goals_profile_gender
 
-        val maleImage = R.drawable.goals_male
-        val femaleImage = R.drawable.goals_female
-
         //TODO : send API for calculate ideal goals
         nameText.setText("${setGoal.name}")
         ageText.setText("${setGoal.age} y.o")
         weightText.setText("${setGoal.weight} kg")
         heightText.setText("${setGoal.height} cm")
-        if(setGoal.gender == "male"){
-            genderImage.setImageDrawable(resources.getDrawable(maleImage))
-        }
-        else{
-            genderImage.setImageDrawable(resources.getDrawable(femaleImage))
-        }
+        genderImage.setImageDrawable(resources.getDrawable(defaultProfileImage))
         return view
     }
 }

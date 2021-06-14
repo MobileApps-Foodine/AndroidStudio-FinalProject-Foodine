@@ -22,7 +22,6 @@ class SettingsAboutActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-//        TODO : logo round
         val aboutPage= AboutPage(this)
             .isRTL(false)
             .setImage(R.drawable.logo_drawable)

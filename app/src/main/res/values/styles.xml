@@ -102,4 +102,21 @@
     <style name="circular_image">
         <item name="cornerSize">50%</item>
     </style>
+
+    <style name="editTextDefault" parent="@android:style/Widget.EditText">
+        <item name="android:textSize">16dp</item>
+    </style>
+
+    <style name="MyDatePicker" parent="@style/ThemeOverlay.MaterialComponents.MaterialCalendar">
+        <item name="materialCalendarHeaderTitle">@style/MyHeaderTitle</item>
+        <item name="materialCalendarHeaderSelection">@style/MySelectionTitle</item>
+    </style>
+
+    <style name="MyHeaderTitle" parent="Widget.MaterialComponents.MaterialCalendar.HeaderTitle">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+    <style name="MySelectionTitle" parent="Widget.MaterialComponents.MaterialCalendar.HeaderSelection">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
 </resources>
