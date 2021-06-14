@@ -73,18 +73,18 @@ class SignUpFragment : Fragment() {
                     userPassword = input_password.text.toString(),
                     userPasswordConfirmation = input_confirm.text.toString())
 
-                val loadingBar = activity?.signinup_progress
-                loadingBar!!.visibility = View.VISIBLE
-                val userInterface : UserInterface = ServerAPI().getServerAPI()!!.create(UserInterface::class.java)
+                val serverAPI = ServerAPI()
+                val userInterface : UserInterface = serverAPI.getServerAPI(requireActivity())!!.create(UserInterface::class.java)
                 userInterface.userRegis(mainUser).enqueue(object : Callback<MainUsers> {
                     override fun onResponse(call: Call<MainUsers>?, response: Response<MainUsers>?) {
                         if (response!!.isSuccessful) {
-                            loadingBar!!.visibility = View.GONE
+                            serverAPI.pDialog.dismissWithAnimation()
                             apiToken = response.body()?.userAPItoken!!
                             Toast.makeText(activity, "Registration successfull", Toast.LENGTH_LONG).show()
                             val intent = Intent(activity, GoalsActivity::class.java)
                             startActivity(intent)
                         } else {
+                            serverAPI.pDialog.dismissWithAnimation()
                             null
                         }
                     }

@@ -65,19 +65,18 @@ class SignInFragment : Fragment() {
                     userPassword = input_password.text.toString()
                 )
 
-                val loadingBar = activity?.signinup_progress
-                loadingBar!!.visibility = View.VISIBLE
-                val userInterface : UserInterface = ServerAPI().getServerAPI()!!.create(UserInterface::class.java)
+                val serverAPI = ServerAPI()
+                val userInterface : UserInterface = serverAPI.getServerAPI(requireActivity())!!.create(UserInterface::class.java)
                 userInterface.userLogin(mainUser).enqueue(object : Callback<MainUsers> {
                     override fun onResponse(call: Call<MainUsers>?, response: Response<MainUsers>?) =
                         if (response!!.isSuccessful) {
-                            loadingBar!!.visibility = View.GONE
                             apiToken = response.body()?.userAPItoken!!
+                            serverAPI.pDialog.dismissWithAnimation()
                             Toast.makeText(activity, "Login successfull", Toast.LENGTH_LONG).show()
                             val intent = Intent(activity, MainActivity::class.java)
                             startActivity(intent)
                         } else {
-                            loadingBar!!.visibility = View.GONE
+                            serverAPI.pDialog.dismissWithAnimation()
                             try {
                                 val output : ErrorResponse = ErrorHelper().parseErrorBody(response)
                                 view.signin_layout_email.error =
