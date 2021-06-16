@@ -3,7 +3,15 @@ package com.projectakhir.foodine.AllMethod
 import android.Manifest
 import com.projectakhir.foodine.Goals.setGoal
 import com.projectakhir.foodine.R
+import com.projectakhir.foodine.DataClass.MainUsers
+import com.projectakhir.foodine.DataClass.UserConditions
+import com.projectakhir.foodine.DataClass.UserDetail
+import com.projectakhir.foodine.DataClass.UserGoal
 
+var userData : MainUsers? = null
+var userDataDetail : UserDetail? = null
+var userDataCondition : UserConditions? = null
+var userGoal : UserGoal? = null
 var apiToken : String = ""
 val maleImage = R.drawable.goals_male
 val femaleImage = R.drawable.goals_female
@@ -16,3 +24,6 @@ val manifestPermissions : List<String> = listOf(
     Manifest.permission.ACCESS_WIFI_STATE,
     Manifest.permission.INTERNET,
     Manifest.permission.CAMERA)
+
+val emptyString = ' '.toString()
+val toEmpty = null

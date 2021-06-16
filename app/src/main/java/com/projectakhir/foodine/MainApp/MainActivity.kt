@@ -3,6 +3,7 @@ package com.projectakhir.foodine.MainApp
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.MotionEvent
@@ -20,12 +21,21 @@ import androidx.navigation.ui.setupWithNavController
 import cn.pedant.SweetAlert.SweetAlertDialog
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
+import com.projectakhir.foodine.AllMethod.*
 import com.projectakhir.foodine.BuildConfig
 import com.projectakhir.foodine.MainApp.AddMenu.AddCalculateGoalsActivity
 import com.projectakhir.foodine.MainApp.SettingsDrawer.*
 import com.projectakhir.foodine.R
+import com.projectakhir.foodine.SettingAPI.Interface.UserInterface
+import com.projectakhir.foodine.SettingAPI.ResponseDataClass.ErrorHelper
+import com.projectakhir.foodine.SettingAPI.ResponseDataClass.ErrorResponse
+import com.projectakhir.foodine.SettingAPI.ResponseDataClass.SuccessResponse
+import com.projectakhir.foodine.SettingAPI.ServerAPI
 import com.projectakhir.foodine.SignInUp.SignActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class MainActivity : AppCompatActivity(), DrawerInterface{
@@ -130,11 +140,41 @@ class MainActivity : AppCompatActivity(), DrawerInterface{
     fun logoutDialog(){
         val alertDialog = SweetAlertDialog(this@MainActivity, SweetAlertDialog.WARNING_TYPE)
         alertDialog.setContentText("Are you sure want to log out?")
+                //Logout Account
             .setConfirmText("Logout")
             .setConfirmClickListener {
-                it.dismissWithAnimation()
-                Toast.makeText(this, "Logged out", Toast.LENGTH_SHORT).show()
-                startActivity(Intent(this, SignActivity::class.java))
+                val serverAPI = ServerAPI()
+                val userInterface : UserInterface = serverAPI.getServerAPI(this)!!.create(UserInterface::class.java)
+                userInterface.userLogout().enqueue(object : Callback<SuccessResponse> {
+                    override fun onResponse(
+                        call: Call<SuccessResponse>,
+                        response: Response<SuccessResponse>
+                    ) {
+                        if (response!!.isSuccessful) {
+                            serverAPI.pDialog.dismissWithAnimation()
+                            userData = toEmpty
+                            userDataDetail = toEmpty
+                            userDataCondition = toEmpty
+                            apiToken = emptyString
+                            it.dismissWithAnimation()
+                            Toast.makeText(this@MainActivity, "Logged out", Toast.LENGTH_SHORT).show()
+                            startActivity(Intent(this@MainActivity, SignActivity::class.java))
+                        } else {
+                            serverAPI.pDialog.dismissWithAnimation()
+                            try {
+                                val output : ErrorResponse = ErrorHelper().parseErrorBody(response)
+                                Toast.makeText(this@MainActivity, output.toString(), Toast.LENGTH_SHORT).show()
+                            } catch (e: Exception) {}
+                        }
+                    }
+
+                    override fun onFailure(call: Call<SuccessResponse>, t: Throwable) {
+                        Toast.makeText(this@MainActivity, t.toString(), Toast.LENGTH_SHORT).show()
+                        Log.d("failure", t.toString())
+                    }
+
+                })
+
             }
             .setCancelButton(
                 "Cancel"

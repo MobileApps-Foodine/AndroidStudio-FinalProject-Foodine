@@ -9,10 +9,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
-import com.projectakhir.foodine.AllMethod.clearFocusableAllEditText
-import com.projectakhir.foodine.AllMethod.resetErrorEdittext
+import com.projectakhir.foodine.AllMethod.*
+import com.projectakhir.foodine.DataClass.MainUsers
+import com.projectakhir.foodine.Goals.GoalsActivity
 import com.projectakhir.foodine.MainApp.MainActivity
 import com.projectakhir.foodine.R
+import com.projectakhir.foodine.SettingAPI.Interface.UserInterface
+import com.projectakhir.foodine.SettingAPI.ResponseDataClass.ErrorHelper
+import com.projectakhir.foodine.SettingAPI.ResponseDataClass.ErrorResponse
+import com.projectakhir.foodine.SettingAPI.ServerAPI
 import kotlinx.android.synthetic.main.activity_sign_in_up.*
 import kotlinx.android.synthetic.main.fragment_sign_in.view.*
 import retrofit2.Call
@@ -50,45 +55,54 @@ class SignInFragment : Fragment() {
         btn_signIn.setOnClickListener {
             clearFocusableAllEditText(arrayListOf(input_email, input_password))
             if(input_email.text.toString().isNotEmpty() && input_password.text.toString().isNotEmpty()){
-                val intent = Intent(activity, MainActivity::class.java)
-                startActivity(intent)
                 //TODO : send data to database
-//                val userInfo = UserInfo(
-//                    userEmail = input_email.text.toString(),
-//                    userPassword = input_password.text.toString()
-//                )
-//
-//                val loadingBar = activity?.signinup_progress
-//                loadingBar!!.visibility = View.VISIBLE
-//                val userInterface : UserInterface = ServerAPI().getServerAPI()!!.create(UserInterface::class.java)
-//                userInterface.userLogin(userInfo).enqueue(object : Callback<UserInfo> {
-//                    override fun onResponse(call: Call<UserInfo>?, response: Response<UserInfo>?) =
-//                        if (response!!.isSuccessful) {
-//                            loadingBar!!.visibility = View.GONE
-//                            apiToken = response.body()?.userAPItoken!!
-//                            Toast.makeText(activity, "Login successfull", Toast.LENGTH_LONG).show()
-//                            val intent = Intent(activity, MainActivity::class.java)
-//                            startActivity(intent)
-//                        } else {
-//                            loadingBar!!.visibility = View.GONE
-//                            try {
-//                                val output : ErrorResponse = ErrorHelper().parseErrorBody(response)
-//                                view.signin_layout_email.error =
-//                                    if (output.errors?.email.toString() != "null")
-//                                    {removeResponseRegex(output.errors?.email.toString())}
-//                                    else{null}
-//                                view.signin_layout_password.error =
-//                                    if (output.errors?.password.toString() != "null")
-//                                    {removeResponseRegex(output.errors?.password.toString())}
-//                                    else{null}
-//                            } catch (e: Exception) {}
-//                        }
-//
-//                    override fun onFailure(call: Call<UserInfo>?, t: Throwable) {
-//                        Toast.makeText(activity, t.toString(), Toast.LENGTH_SHORT).show()
-//                        Log.d("failure", t.toString())
-//                    }
-//                })
+                val mainUser = MainUsers(
+                    userEmail = input_email.text.toString(),
+                    userPassword = input_password.text.toString())
+
+                val serverAPI = ServerAPI()
+                val userInterface : UserInterface = serverAPI.getServerAPI(requireActivity())!!.create(UserInterface::class.java)
+                userInterface.userLogin(mainUser).enqueue(object : Callback<MainUsers> {
+                    override fun onResponse(call: Call<MainUsers>?, response: Response<MainUsers>?) =
+                        if (response!!.isSuccessful) {
+                            userData = response.body()
+                            userDataDetail = userData!!.userDetail
+                            apiToken = userData?.userAPItoken!!
+                            serverAPI.pDialog.dismissWithAnimation()
+                            Toast.makeText(activity, "Login successfull", Toast.LENGTH_LONG).show()
+                            if(userData?.userConditions != null){
+                                userDataCondition = userData?.userConditions!!.size.minus(
+                                    1
+                                ).let { it1 -> userData!!.userConditions!!.get(it1) }
+                                startActivity(Intent(activity, MainActivity::class.java))
+                            }else{
+                                startActivity(Intent(activity, GoalsActivity::class.java))
+                            }
+                        } else {
+                            serverAPI.pDialog.dismissWithAnimation()
+                            try {
+                                val output: ErrorResponse = ErrorHelper().parseErrorBody(response)
+                                view.signin_layout_email.error =
+                                    if (output.errors?.email.toString() != "null") {
+                                        removeResponseRegex(output.errors?.email.toString())
+                                    } else {
+                                        null
+                                    }
+                                view.signin_layout_password.error =
+                                    if (output.errors?.password.toString() != "null") {
+                                        removeResponseRegex(output.errors?.password.toString())
+                                    } else {
+                                        null
+                                    }
+                            } catch (e: Exception) {
+                            }
+                        }
+
+                    override fun onFailure(call: Call<MainUsers>, t: Throwable) {
+                        Toast.makeText(activity, t.toString(), Toast.LENGTH_SHORT).show()
+                        Log.d("failure", t.toString())
+                    }
+                })
             }
             else{
                 if(input_email.text.toString().isEmpty()){

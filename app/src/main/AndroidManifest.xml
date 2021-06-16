@@ -20,27 +20,17 @@
         android:usesCleartextTraffic="true"
         android:windowSoftInputMode="adjustPan">
         <activity android:name=".OtherActivity.ShowPictureActivity"/>
-        <activity android:name=".MainApp.SettingsDrawer.SettingsAccountActivity">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
-        </activity>
+        <activity android:name=".MainApp.SettingsDrawer.SettingsAccountActivity"/>
         <activity android:name=".MainApp.SettingsDrawer.SettingsAboutActivity" />
         <activity android:name=".MainApp.SettingsDrawer.SettingsFeedbackActivity" />
         <activity android:name=".MainApp.AddMenu.AddShoppinglistActivity" />
         <activity android:name=".MainApp.AddMenu.AddRecipeActivity" />
         <activity android:name=".MainApp.AddMenu.AddCalculateGoalsActivity" />
-        <activity android:name=".MainApp.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".MainApp.MainActivity"/>
         <activity
             android:name=".Goals.GoalsActivity"
             android:noHistory="true"
-            android:theme="@style/Theme.Foodine.NoActionBar" />
+            android:theme="@style/Theme.Foodine.NoActionBar"/>
         <activity
             android:name=".SignInUp.SignActivity"
             android:noHistory="true" />
@@ -52,10 +42,10 @@
             android:name=".SplashScreenActivity"
             android:noHistory="true"
             android:theme="@style/Theme.Foodine.NoActionBar">
-<!--             <intent-filter>-->
-<!--                 <action android:name="android.intent.action.MAIN" />-->
-<!--                 <category android:name="android.intent.category.LAUNCHER" />-->
-<!--             </intent-filter>-->
+             <intent-filter>
+                 <action android:name="android.intent.action.MAIN" />
+                 <category android:name="android.intent.category.LAUNCHER" />
+             </intent-filter>
         </activity>
 
         <meta-data

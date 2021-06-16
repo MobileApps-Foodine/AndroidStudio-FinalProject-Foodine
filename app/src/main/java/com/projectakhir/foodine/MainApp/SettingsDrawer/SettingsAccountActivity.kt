@@ -67,7 +67,6 @@ class SettingsAccountActivity : AppCompatActivity(){
         imageConfiguration()
         dobConfiguration()
 
-
         menuNavigation = findViewById(R.id.account_menu_navigation)
         menuNavigation.setNavigationItemSelectedListener {
             when(it.itemId) {

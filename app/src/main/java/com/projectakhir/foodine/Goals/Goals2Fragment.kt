@@ -5,6 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import com.projectakhir.foodine.AllMethod.userDataCondition
+import com.projectakhir.foodine.DataClass.UserConditions
 import com.projectakhir.foodine.R
 import kotlinx.android.synthetic.main.fragment_goals2.view.*
 
@@ -24,20 +27,27 @@ class Goals2Fragment : Fragment() {
         val heightText = view.goals_profile_height_txt
 
         //TODO : reduce decimal
-        weightText.text = "${setGoal.weight} kg"
-        weightScale.setValue(setGoal.weight.toFloat())
-        weightScale.setValueListener {
-            weightText.text = "$it kg"
-            val doubleType = it.toDouble()
-            setGoal.weight = it.toDouble()
+        if(userDataCondition == null){
+            weightText.text = "40.0 kg"
+            weightScale.setValue(40.0f)
+            heightText.text = "150.0 cm"
+            heightScale.setValue(150.0f)
+            userDataCondition = UserConditions(40.0f, 150.0f, null)
+        }else{
+            weightText.text = "${userDataCondition?.userWeight} kg"
+            weightScale.setValue((userDataCondition?.userWeight)!!.toFloat())
+            heightText.text = "${userDataCondition?.userHeight} cm"
+            heightScale.setValue((userDataCondition?.userHeight)!!.toFloat())
         }
 
-        heightText.text = "${setGoal.height} cm"
-        heightScale.setValue(setGoal.height.toFloat())
+        weightScale.setValueListener {
+            weightText.text = "$it kg"
+            userDataCondition?.userWeight = it
+        }
+
         heightScale.setValueListener {
             heightText.text = "$it cm"
-            val doubleType = it.toDouble()
-            setGoal.height = it.toDouble()
+            userDataCondition?.userHeight = it
         }
         return view
     }

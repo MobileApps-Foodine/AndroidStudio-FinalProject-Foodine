@@ -3,19 +3,37 @@ package com.projectakhir.foodine.Goals
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.RelativeLayout
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
+import com.projectakhir.foodine.AllMethod.userData
+import com.projectakhir.foodine.AllMethod.userDataCondition
+import com.projectakhir.foodine.AllMethod.userDataDetail
+import com.projectakhir.foodine.DataClass.MainUsers
 import com.projectakhir.foodine.MainApp.MainActivity
 import com.projectakhir.foodine.R
+import com.projectakhir.foodine.SettingAPI.Interface.UserInterface
+import com.projectakhir.foodine.SettingAPI.ResponseDataClass.ErrorHelper
+import com.projectakhir.foodine.SettingAPI.ResponseDataClass.ErrorResponse
+import com.projectakhir.foodine.SettingAPI.ServerAPI
 import kotlinx.android.synthetic.main.activity_goals.*
 import kotlinx.android.synthetic.main.activity_goals.nav_host_fragment
+import kotlinx.android.synthetic.main.fragment_goals1.*
+import kotlinx.android.synthetic.main.fragment_goals2.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import java.lang.Exception
 
 
 class GoalsActivity : AppCompatActivity() {
+    var userAge : Int = 0
+
     private fun showNextButton(state:Boolean){
         goals_next_button.visibility = when(state){
             true -> View.VISIBLE
@@ -56,9 +74,41 @@ class GoalsActivity : AppCompatActivity() {
                     goals_next_button.text = "Done"
                 }
                 R.id.goals3Fragment -> {
-                    //TODO : send to database (update userGoal and userCondition)
-                    val intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
+                    val mainUser = hashMapOf(
+                        "gender" to userDataDetail!!.userGender!!,
+                        "date_of_birth" to userDataDetail!!.userDob.toString(),
+                        "weight" to userDataCondition!!.userWeight.toString(),
+                        "height" to userDataCondition!!.userHeight.toString())
+
+                    val serverAPI = ServerAPI()
+                    val userInterface : UserInterface = serverAPI.getServerAPI(this)!!.create(UserInterface::class.java)
+                    userInterface.userDetailCondition(mainUser).enqueue(object : Callback<MainUsers>{
+                        override fun onResponse(call: Call<MainUsers>, response: Response<MainUsers>) {
+                            if (response!!.isSuccessful) {
+                                serverAPI.pDialog.dismissWithAnimation()
+                                userData = response.body()
+                                userDataDetail = userData!!.userDetail
+                                userDataCondition = userData?.userConditions!!.size.minus(
+                                    1
+                                ).let { it1 -> userData!!.userConditions!!.get(it1) }
+                                Toast.makeText(this@GoalsActivity, "Register Successful", Toast.LENGTH_LONG).show()
+                                val intent = Intent(this@GoalsActivity, MainActivity::class.java)
+                                startActivity(intent)
+                            } else {
+                                serverAPI.pDialog.dismissWithAnimation()
+                                try {
+                                    val output: ErrorResponse = ErrorHelper().parseErrorBody(response)
+                                    Toast.makeText(this@GoalsActivity, output.toString(), Toast.LENGTH_SHORT).show()
+                                } catch (e: Exception) {}
+                            }
+                        }
+
+                        override fun onFailure(call: Call<MainUsers>, t: Throwable) {
+                            Toast.makeText(this@GoalsActivity, t.toString(), Toast.LENGTH_SHORT).show()
+                            Log.d("failure", t.toString())
+                        }
+
+                    })
                 }
             }
         }
