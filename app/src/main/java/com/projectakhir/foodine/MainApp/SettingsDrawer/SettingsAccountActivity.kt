@@ -27,9 +27,7 @@ import com.google.android.material.datepicker.DateValidatorPointBackward
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.navigation.NavigationView
-import com.projectakhir.foodine.AllMethod.defaultProfileImage
-import com.projectakhir.foodine.AllMethod.warningDiscardChange
-import com.projectakhir.foodine.Goals.setGoal
+import com.projectakhir.foodine.AllMethod.*
 import com.projectakhir.foodine.OtherActivity.ShowPictureActivity
 import com.projectakhir.foodine.R
 import com.projectakhir.foodine.RequestPermission
@@ -39,15 +37,20 @@ import java.io.*
 import java.text.ParsePosition
 import java.text.SimpleDateFormat
 import java.util.*
+import java.util.concurrent.TimeUnit
 
 
+@Suppress("RECEIVER_NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 class SettingsAccountActivity : AppCompatActivity(){
+    private lateinit var initPhoto: String
     private lateinit var menuNavigation : NavigationView
     private lateinit var initName : String
     private lateinit var initWebsite : String
     private lateinit var initBio : String
     private lateinit var initGender : String
     private lateinit var initDOB : String
+    private lateinit var currentGender : String
+    private lateinit var currentDOB: String
     private var initImage : Bitmap? = null
     private var currentImage : Bitmap? = null
     private val request = RequestPermission()
@@ -90,52 +93,66 @@ class SettingsAccountActivity : AppCompatActivity(){
     }
 
     private fun initialDetailProfile() {
-        // TODO: get init value form database
-        initName = setGoal.name
-        initBio = account_edit_bio_txt.text.toString()
-        initWebsite = account_edit_website_txt.text.toString()
-        initGender = setGoal.gender
-        initDOB = account_edit_dob_txt.text.toString()
-        //TODO : image -> check if image in database is null or not. if null, will set as default. Now set as a bitmap
+        // TODO: initPhoto + initImage (must resolve data type of photo profile)
+        initName = if(userDataDetail?.userName != null){ userDataDetail?.userName!! }
+                    else { emptyString }
+        initBio = if(userDataDetail?.userBio != null){ userDataDetail?.userBio!! }
+                    else{ emptyString }
+        initWebsite = if(userDataDetail?.userUrl != null) { userDataDetail?.userUrl!! }
+                    else{ emptyString }
+        initGender = if(userDataDetail?.userGender != null){ userDataDetail?.userGender!!.toString() }
+                    else{ "male" }
+        initPhoto = if(userDataDetail?.userPhoto != null){ userDataDetail?.userPhoto!! }
+                    else { emptyString }
 
         account_edit_name_txt.setText(initName)
         account_edit_bio_txt.setText(initBio)
         account_edit_website_txt.setText(initWebsite)
-        val imageBitmap = if(initImage == null){
-            BitmapFactory.decodeResource(this.getResources(), defaultProfileImage)
+        val imageBitmap = if(initImage == null || initPhoto == emptyString){
+            BitmapFactory.decodeResource(this.getResources(),
+                Gender.valueOf(userDataDetail?.userGender!!.toString()).getImageDefault())
         }
         else{
             MediaStore.Images.Media.getBitmap(contentResolver, (Uri.parse(initImage.toString())))
         }
         account_image.setImageBitmap(imageBitmap)
         initImage = imageBitmap
-        currentImage = imageBitmap
+        currentImage = initImage
+        currentGender = initGender
+    }
+
+    private fun showDOB(data : Long?) {
+        val sdf = SimpleDateFormat("dd MMMM yyyy", Locale.US)
+        account_edit_dob_txt.setText(sdf.format(data))
     }
 
     private fun dobConfiguration() {
+        val pos = ParsePosition(0)
+        val sdf = SimpleDateFormat("yyyy-mm-dd", Locale.US)
+        val lastDate = sdf.parse(userDataDetail!!.userDob, pos).time
+        showDOB(lastDate)
+
+        initDOB = lastDate.toString()
+        currentDOB = initDOB
+
         account_edit_dob_txt.setOnClickListener {
             val calendar = Calendar.getInstance(TimeZone.getTimeZone("WIB"))
-
-            val pos = ParsePosition(0)
-            val sdf = SimpleDateFormat("EEEE, dd MMMM yyyy", Locale.US)
-//            val lastDate = sdf.parse(account_edit_dob_txt.text.toString(), pos).time
-
             calendar[Calendar.MONTH] = Calendar.DECEMBER
-            val decThisYear = calendar.timeInMillis
             val constraintBuilder = CalendarConstraints.Builder()
-            constraintBuilder.setValidator(DateValidatorPointBackward.now()).setEnd(decThisYear)
+            constraintBuilder.setValidator(DateValidatorPointBackward.now()).setEnd(calendar.timeInMillis)
 
             val datePicker = MaterialDatePicker.Builder.datePicker()
                 .setTitleText("Date of Birth")
-//                .setSelection(lastDate + TimeUnit.DAYS.toMillis(1))
+                .setSelection(lastDate + TimeUnit.DAYS.toMillis(1))
                 .setInputMode(MaterialDatePicker.INPUT_MODE_CALENDAR)
                 .setCalendarConstraints(constraintBuilder.build())
                 .setTheme(R.style.MyDatePicker)
                 .build()
             datePicker.show(supportFragmentManager, "DATE_PICKER")
             datePicker.addOnPositiveButtonClickListener{
-                val sdf = SimpleDateFormat("dd MMMM yyyy", Locale.US)
-                account_edit_dob_txt.setText(sdf.format(datePicker.selection))}
+                showDOB(datePicker.selection)
+                currentDOB = sdf.format(datePicker.selection)
+            }
             datePicker.addOnNegativeButtonClickListener{}
             datePicker.isCancelable = false
         }
@@ -149,8 +166,9 @@ class SettingsAccountActivity : AppCompatActivity(){
                     when(which){
                         0 -> request.requestMultiplePermissions(this, listOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE), "Change profile picture")
                         1 -> {
-                            account_image.setImageBitmap(BitmapFactory.decodeResource(this.getResources(), defaultProfileImage))
-                            currentImage = null
+                            currentImage = BitmapFactory.decodeResource(this.getResources(),
+                                Gender.valueOf(currentGender).getImageDefault())
+                            account_image.setImageBitmap(currentImage)
                         }
                     }
                 }
@@ -178,9 +196,22 @@ class SettingsAccountActivity : AppCompatActivity(){
     private fun genderConfiguration() {
         account_gender_group.onPositionChangedListener =
             SegmentedButtonGroup.OnPositionChangedListener { position ->
-                //TODO : change image default if image didn't set
+                currentGender = when(position){
+                    0 -> Gender.male.toString()
+                    else -> Gender.female.toString()
+                }
+                if(initImage == null || initPhoto == emptyString){
+                    account_image.setImageBitmap(BitmapFactory.decodeResource(this.getResources(),
+                        Gender.valueOf(currentGender).getImageDefault()))
+                }
             }
-        account_gender_group.setPosition(1,false)
+
+        account_gender_group.setPosition(
+            when(userDataDetail?.userGender!!)
+            {
+                Gender.male -> 0
+                else -> 1
+            },false)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -212,7 +243,7 @@ class SettingsAccountActivity : AppCompatActivity(){
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             0 -> {
-                // TODO: send to database
+                // TODO: send to database : currentGender, currentDOB, currentImage (remain use their edittext.text)
                 Toast.makeText(this, "send database", Toast.LENGTH_SHORT).show()
                 onBackPressed()
             }
@@ -233,7 +264,9 @@ class SettingsAccountActivity : AppCompatActivity(){
         if(account_edit_name_txt.text.toString() != initName ||
             account_edit_bio_txt.text.toString() != initBio ||
             account_edit_website_txt.text.toString() != initWebsite ||
-            currentImage != initImage){
+            currentImage != initImage ||
+            currentDOB != initDOB ||
+            currentGender != initGender){
             warningDiscardChange(this)
         }
         else{

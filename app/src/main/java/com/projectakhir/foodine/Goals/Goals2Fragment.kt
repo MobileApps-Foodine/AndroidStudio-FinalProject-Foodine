@@ -26,7 +26,6 @@ class Goals2Fragment : Fragment() {
         val heightScale = view.goals_profile_height_scale
         val heightText = view.goals_profile_height_txt
 
-        //TODO : reduce decimal
         if(userDataCondition == null){
             weightText.text = "40.0 kg"
             weightScale.setValue(40.0f)

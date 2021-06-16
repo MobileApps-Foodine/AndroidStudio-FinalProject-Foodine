@@ -64,6 +64,13 @@ fun warningDiscardChange(context: Context, bottomSheetDialogFragment: BottomShee
     cancelBtn.setTextColor(ContextCompat.getColor(context, R.color.prim_green))
 }
 
+fun failedDialog(dialog : SweetAlertDialog){
+    dialog.setTitleText("Oops")
+        .setContentText("Something went wrong. Please try again.")
+        .setConfirmText("OK")
+        .changeAlertType(SweetAlertDialog.ERROR_TYPE)
+}
+
 fun getImageUriFromBitmap(context: Context, inImage: Bitmap): Uri {
     val bytes = ByteArrayOutputStream()
     inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes)

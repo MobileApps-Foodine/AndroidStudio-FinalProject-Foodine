@@ -10,8 +10,9 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.projectakhir.foodine.AllMethod.clearEditText
+import com.projectakhir.foodine.AllMethod.userData
+import com.projectakhir.foodine.AllMethod.userDataDetail
 import com.projectakhir.foodine.AllMethod.warningDiscardChange
-import com.projectakhir.foodine.Goals.setGoal
 import com.projectakhir.foodine.R
 import kotlinx.android.synthetic.main.fragment_change_email.*
 import kotlinx.android.synthetic.main.fragment_change_email.view.*
@@ -25,7 +26,7 @@ class ChangeEmailFragment : BottomSheetDialogFragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_change_email, container, false)
         clearEditText(arrayListOf(view.changeemail_current_txt, view.changeemail_new_txt))
-        //todo : show email
+        changeemail_current_txt.setText(userData?.userEmail)
 
         view.changeemail_btn_cancel.setOnClickListener {
             if(!isContentEmpty()) warningDiscardChange(requireActivity(), (activity as SettingsAccountActivity).changeEmail)

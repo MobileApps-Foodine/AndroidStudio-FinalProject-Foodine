@@ -30,7 +30,12 @@
         <activity
             android:name=".Goals.GoalsActivity"
             android:noHistory="true"
-            android:theme="@style/Theme.Foodine.NoActionBar"/>
+            android:theme="@style/Theme.Foodine.NoActionBar">
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+        </activity>
         <activity
             android:name=".SignInUp.SignActivity"
             android:noHistory="true" />
@@ -39,7 +44,7 @@
             android:noHistory="true"
             android:theme="@style/Theme.Foodine.NoActionBar" />
         <activity
-            android:name=".SplashScreenActivity"
+            android:name=".OtherActivity.SplashScreenActivity"
             android:noHistory="true"
             android:theme="@style/Theme.Foodine.NoActionBar">
              <intent-filter>

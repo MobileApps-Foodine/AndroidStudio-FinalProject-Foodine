@@ -14,7 +14,6 @@ import com.projectakhir.foodine.AllMethod.*
 import com.projectakhir.foodine.DataClass.MainUsers
 import com.projectakhir.foodine.R
 import com.projectakhir.foodine.Goals.GoalsActivity
-import com.projectakhir.foodine.Goals.setGoal
 import com.projectakhir.foodine.SettingAPI.Interface.UserInterface
 import com.projectakhir.foodine.SettingAPI.ResponseDataClass.ErrorHelper
 import com.projectakhir.foodine.SettingAPI.ResponseDataClass.ErrorResponse
@@ -98,6 +97,7 @@ class SignUpFragment : Fragment() {
                     }
 
                     override fun onFailure(call: Call<MainUsers>?, t: Throwable) {
+                        failedDialog(serverAPI.pDialog)
                         Toast.makeText(activity, t.toString(), Toast.LENGTH_SHORT).show()
                         Log.d("failure", t.toString())
                     }

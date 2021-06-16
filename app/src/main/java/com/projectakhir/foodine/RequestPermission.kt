@@ -10,13 +10,12 @@ import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
 import com.karumi.dexter.listener.*
 import com.karumi.dexter.listener.multi.CompositeMultiplePermissionsListener
-import com.karumi.dexter.listener.multi.DialogOnAnyDeniedMultiplePermissionsListener
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import com.karumi.dexter.listener.multi.SnackbarOnAnyDeniedMultiplePermissionsListener
-import com.karumi.dexter.listener.single.CompositePermissionListener
 import com.karumi.dexter.listener.single.PermissionListener
 import com.projectakhir.foodine.AllMethod.manifestPermissions
 import com.projectakhir.foodine.MainApp.SettingsDrawer.SettingsAccountActivity
+import com.projectakhir.foodine.OtherActivity.SplashScreenActivity
 
 
 class RequestPermission(){

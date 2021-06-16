@@ -1,4 +1,4 @@
-package com.projectakhir.foodine
+package com.projectakhir.foodine.OtherActivity
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,6 +6,8 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.projectakhir.foodine.AllMethod.apiToken
 import com.projectakhir.foodine.MainApp.MainActivity
+import com.projectakhir.foodine.R
+import com.projectakhir.foodine.RequestPermission
 import com.projectakhir.foodine.SignInUp.OnBoarding.OnBoardingActivity
 import kotlinx.android.synthetic.main.activity_splash_screen.*
 

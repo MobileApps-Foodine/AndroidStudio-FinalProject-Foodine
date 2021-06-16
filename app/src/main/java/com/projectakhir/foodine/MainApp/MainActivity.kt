@@ -169,6 +169,7 @@ class MainActivity : AppCompatActivity(), DrawerInterface{
                     }
 
                     override fun onFailure(call: Call<SuccessResponse>, t: Throwable) {
+                        failedDialog(serverAPI.pDialog)
                         Toast.makeText(this@MainActivity, t.toString(), Toast.LENGTH_SHORT).show()
                         Log.d("failure", t.toString())
                     }

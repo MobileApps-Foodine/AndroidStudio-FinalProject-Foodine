@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
+import cn.pedant.SweetAlert.SweetAlertDialog
 import com.projectakhir.foodine.AllMethod.*
 import com.projectakhir.foodine.DataClass.MainUsers
 import com.projectakhir.foodine.Goals.GoalsActivity
@@ -99,6 +100,7 @@ class SignInFragment : Fragment() {
                         }
 
                     override fun onFailure(call: Call<MainUsers>, t: Throwable) {
+                        failedDialog(serverAPI.pDialog)
                         Toast.makeText(activity, t.toString(), Toast.LENGTH_SHORT).show()
                         Log.d("failure", t.toString())
                     }

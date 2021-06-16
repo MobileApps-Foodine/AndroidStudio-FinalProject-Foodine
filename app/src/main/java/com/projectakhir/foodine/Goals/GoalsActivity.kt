@@ -11,6 +11,7 @@ import android.widget.RelativeLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
+import com.projectakhir.foodine.AllMethod.failedDialog
 import com.projectakhir.foodine.AllMethod.userData
 import com.projectakhir.foodine.AllMethod.userDataCondition
 import com.projectakhir.foodine.AllMethod.userDataDetail
@@ -75,7 +76,7 @@ class GoalsActivity : AppCompatActivity() {
                 }
                 R.id.goals3Fragment -> {
                     val mainUser = hashMapOf(
-                        "gender" to userDataDetail!!.userGender!!,
+                        "gender" to userDataDetail!!.userGender.toString(),
                         "date_of_birth" to userDataDetail!!.userDob.toString(),
                         "weight" to userDataCondition!!.userWeight.toString(),
                         "height" to userDataCondition!!.userHeight.toString())
@@ -104,6 +105,7 @@ class GoalsActivity : AppCompatActivity() {
                         }
 
                         override fun onFailure(call: Call<MainUsers>, t: Throwable) {
+                            failedDialog(serverAPI.pDialog)
                             Toast.makeText(this@GoalsActivity, t.toString(), Toast.LENGTH_SHORT).show()
                             Log.d("failure", t.toString())
                         }
