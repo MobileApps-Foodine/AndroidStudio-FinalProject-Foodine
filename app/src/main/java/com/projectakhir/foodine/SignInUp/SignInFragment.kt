@@ -58,16 +58,17 @@ class SignInFragment : Fragment() {
                 //TODO : send data to database
                 val mainUser = MainUsers(
                     userEmail = input_email.text.toString(),
-                    userPassword = input_password.text.toString()
-                )
+                    userPassword = input_password.text.toString())
 
-                val userInterface : UserInterface = ServerAPI().getServerAPI()!!.create(UserInterface::class.java)
+                val serverAPI = ServerAPI()
+                val userInterface : UserInterface = serverAPI.getServerAPI(requireActivity())!!.create(UserInterface::class.java)
                 userInterface.userLogin(mainUser).enqueue(object : Callback<MainUsers> {
-                    override fun onResponse(call: Call<MainUsers>, response: Response<MainUsers>) =
-                        if (response.isSuccessful) {
+                    override fun onResponse(call: Call<MainUsers>?, response: Response<MainUsers>?) =
+                        if (response!!.isSuccessful) {
                             userData = response.body()
                             userDataDetail = userData!!.userDetail
                             apiToken = userData?.userAPItoken!!
+                            serverAPI.pDialog.dismissWithAnimation()
                             Toast.makeText(activity, "Login successfull", Toast.LENGTH_LONG).show()
                             if(userData?.userConditions != null){
                                 userDataCondition = userData?.userConditions!!.size.minus(
@@ -77,8 +78,8 @@ class SignInFragment : Fragment() {
                             }else{
                                 startActivity(Intent(activity, GoalsActivity::class.java))
                             }
-
                         } else {
+                            serverAPI.pDialog.dismissWithAnimation()
                             try {
                                 val output: ErrorResponse = ErrorHelper().parseErrorBody(response)
                                 view.signin_layout_email.error =

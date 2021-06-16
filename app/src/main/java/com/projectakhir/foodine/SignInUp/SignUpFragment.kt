@@ -63,8 +63,6 @@ class SignUpFragment : Fragment() {
                 input_password.text.toString().isNotEmpty() &&
                 input_confirm.text.toString().isNotEmpty() &&
                 checkPassword) {
-                //TODO : send data to database
-
 
                 val mainUser = MainUsers(
                     userName = input_name.text.toString().capitalizeWords(),
@@ -72,17 +70,21 @@ class SignUpFragment : Fragment() {
                     userPassword = input_password.text.toString(),
                     userPasswordConfirmation = input_confirm.text.toString())
 
-                val userInterface : UserInterface = ServerAPI().getServerAPI()!!.create(UserInterface::class.java)
+                val serverAPI = ServerAPI()
+                val userInterface : UserInterface = serverAPI.getServerAPI(requireActivity())!!.create(UserInterface::class.java)
                 userInterface.userRegis(mainUser).enqueue(object : Callback<MainUsers> {
-                    override fun onResponse(call: Call<MainUsers>?, response: Response<MainUsers>?) =
+                    override fun onResponse(call: Call<MainUsers>?, response: Response<MainUsers>?) {
                         if (response!!.isSuccessful) {
+                            serverAPI.pDialog.dismissWithAnimation()
                             userData = response.body()
                             userDataDetail = userData?.userDetail
                             apiToken = userData?.userAPItoken!!
+                            serverAPI.pDialog.dismissWithAnimation()
                             Toast.makeText(activity, "Registration successfull", Toast.LENGTH_LONG).show()
                             val intent = Intent(activity, GoalsActivity::class.java)
                             startActivity(intent)
                         } else {
+                            serverAPI.pDialog.dismissWithAnimation()
                             try {
                                 val output: ErrorResponse = ErrorHelper().parseErrorBody(response)
                                 view.signup_layout_email.error =
@@ -91,10 +93,9 @@ class SignUpFragment : Fragment() {
                                     } else {
                                         null
                                     }
-                            } catch (e: Exception) {
-                            }
+                            } catch (e: Exception) { }
                         }
-
+                    }
 
                     override fun onFailure(call: Call<MainUsers>?, t: Throwable) {
                         Toast.makeText(activity, t.toString(), Toast.LENGTH_SHORT).show()

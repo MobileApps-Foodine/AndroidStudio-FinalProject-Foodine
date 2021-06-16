@@ -80,10 +80,12 @@ class GoalsActivity : AppCompatActivity() {
                         "weight" to userDataCondition!!.userWeight.toString(),
                         "height" to userDataCondition!!.userHeight.toString())
 
-                    val userInterface : UserInterface = ServerAPI().getServerAPI()!!.create(UserInterface::class.java)
+                    val serverAPI = ServerAPI()
+                    val userInterface : UserInterface = serverAPI.getServerAPI(this)!!.create(UserInterface::class.java)
                     userInterface.userDetailCondition(mainUser).enqueue(object : Callback<MainUsers>{
                         override fun onResponse(call: Call<MainUsers>, response: Response<MainUsers>) {
                             if (response!!.isSuccessful) {
+                                serverAPI.pDialog.dismissWithAnimation()
                                 userData = response.body()
                                 userDataDetail = userData!!.userDetail
                                 userDataCondition = userData?.userConditions!!.size.minus(
@@ -93,6 +95,7 @@ class GoalsActivity : AppCompatActivity() {
                                 val intent = Intent(this@GoalsActivity, MainActivity::class.java)
                                 startActivity(intent)
                             } else {
+                                serverAPI.pDialog.dismissWithAnimation()
                                 try {
                                     val output: ErrorResponse = ErrorHelper().parseErrorBody(response)
                                     Toast.makeText(this@GoalsActivity, output.toString(), Toast.LENGTH_SHORT).show()
