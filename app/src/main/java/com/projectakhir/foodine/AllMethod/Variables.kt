@@ -1,7 +1,15 @@
 package com.projectakhir.foodine.AllMethod
 
 import android.Manifest
+import com.projectakhir.foodine.DataClass.MainUsers
+import com.projectakhir.foodine.DataClass.UserConditions
+import com.projectakhir.foodine.DataClass.UserDetail
+import com.projectakhir.foodine.DataClass.UserGoal
 
+var userData : MainUsers? = null
+var userDataDetail : UserDetail? = null
+var userDataCondition : UserConditions? = null
+var userGoal : UserGoal? = null
 var apiToken : String = ""
 
 val manifestPermissions : List<String> = listOf(
@@ -12,9 +20,4 @@ val manifestPermissions : List<String> = listOf(
     Manifest.permission.INTERNET)
 
 val emptyString = ' '.toString()
-
-//Empty ArrayList
-//val emptyCategoriesMerchandise = arrayListOf<CategoryMerchandise>()
-//val emptyCategoriesGroup= arrayListOf<CategoryGroup>()
-//val emptyMainProduct = arrayListOf<MainProduct>()
-//val emptyVersionProduct = arrayListOf<VersionProduct>()
+val toEmpty = null

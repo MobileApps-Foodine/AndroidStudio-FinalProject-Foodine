@@ -12,10 +12,14 @@ data class ErrorResponse (
 ){
     @Parcelize
     data class Errors(
-//For User
+    //For User, always add if any validate request in Laravel
         @SerializedName("name") val name : List<String>?,
         @SerializedName("email") val email : List<String>?,
         @SerializedName("password") val password : List<String>?,
-        @SerializedName("password_confirmation") val password_confirmation : List<String>?
+        @SerializedName("password_confirmation") val password_confirmation : List<String>?,
+        @SerializedName("gender") val gender: List<String>?,
+        @SerializedName("date_of_birth") val dob : List<String>?,
+        @SerializedName("height") val height : List<String>?,
+        @SerializedName("weight") val weight : List<String>?
     ) : Parcelable
 }

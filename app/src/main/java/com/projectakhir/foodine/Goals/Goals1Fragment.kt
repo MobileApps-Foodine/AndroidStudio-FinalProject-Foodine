@@ -8,8 +8,11 @@ import android.view.ViewGroup
 import android.widget.DatePicker
 import android.widget.RelativeLayout
 import com.google.android.material.card.MaterialCardView
+import com.projectakhir.foodine.AllMethod.userData
+import com.projectakhir.foodine.AllMethod.userDataDetail
 import com.projectakhir.foodine.R
 import kotlinx.android.synthetic.main.fragment_goals1.view.*
+import java.text.SimpleDateFormat
 import java.util.*
 
 class Goals1Fragment : Fragment() {
@@ -30,12 +33,12 @@ class Goals1Fragment : Fragment() {
             true ->{
                 genderMale.isChecked = true
                 genderFemale.isChecked = false
-                setGoal.gender = "male"
+                userDataDetail?.userGender = "male"
             }
             false -> {
                 genderFemale.isChecked = true
                 genderMale.isChecked = false
-                setGoal.gender = "female"
+                userDataDetail?.userGender = "female"
             }
         }
         dobContent.visibility = View.VISIBLE
@@ -58,10 +61,10 @@ class Goals1Fragment : Fragment() {
         setDatePicker(datePicker)
         dobContent.visibility = View.GONE
 
-        if(setGoal.gender == "male"){
+        if(userDataDetail?.userGender == "male"){
             setGenderMale(true, genderMale, genderFemale, dobContent)
         }
-        else if(setGoal.gender == "female"){
+        else if(userDataDetail?.userGender == "female"){
             setGenderMale(false, genderMale, genderFemale, dobContent)
         }
 
@@ -74,8 +77,8 @@ class Goals1Fragment : Fragment() {
         }
 
         datePicker.setOnDateChangedListener { view, year, monthOfYear, dayOfMonth ->
-            setGoal.dob = Date(year,monthOfYear,dayOfMonth)
-            setGoal.age = Calendar.getInstance().get(Calendar.YEAR) - year
+            userDataDetail?.userDob = "$year-$monthOfYear-$dayOfMonth"
+            (activity as GoalsActivity).userAge = Calendar.getInstance().get(Calendar.YEAR) - year
         }
         return view
     }

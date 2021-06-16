@@ -65,29 +65,36 @@ class SignUpFragment : Fragment() {
                 checkPassword) {
                 //TODO : send data to database
 
-                setGoal.name = (input_name.text.toString()).capitalizeWords()
-                val intent = Intent(activity, GoalsActivity::class.java)
-                startActivity(intent)
-                val mainUser = MainUsers(userName = input_name.text.toString(),
-                    userEmail = input_email.text.toString(),
+
+                val mainUser = MainUsers(
+                    userName = input_name.text.toString().capitalizeWords(),
+                    userEmail = input_email.text.toString().lowercase(),
                     userPassword = input_password.text.toString(),
                     userPasswordConfirmation = input_confirm.text.toString())
 
-                val loadingBar = activity?.signinup_progress
-                loadingBar!!.visibility = View.VISIBLE
                 val userInterface : UserInterface = ServerAPI().getServerAPI()!!.create(UserInterface::class.java)
                 userInterface.userRegis(mainUser).enqueue(object : Callback<MainUsers> {
-                    override fun onResponse(call: Call<MainUsers>?, response: Response<MainUsers>?) {
+                    override fun onResponse(call: Call<MainUsers>?, response: Response<MainUsers>?) =
                         if (response!!.isSuccessful) {
-                            loadingBar!!.visibility = View.GONE
-                            apiToken = response.body()?.userAPItoken!!
+                            userData = response.body()
+                            userDataDetail = userData?.userDetail
+                            apiToken = userData?.userAPItoken!!
                             Toast.makeText(activity, "Registration successfull", Toast.LENGTH_LONG).show()
                             val intent = Intent(activity, GoalsActivity::class.java)
                             startActivity(intent)
                         } else {
-                            null
+                            try {
+                                val output: ErrorResponse = ErrorHelper().parseErrorBody(response)
+                                view.signup_layout_email.error =
+                                    if (output.errors?.email.toString() != "null") {
+                                        removeResponseRegex(output.errors?.email.toString())
+                                    } else {
+                                        null
+                                    }
+                            } catch (e: Exception) {
+                            }
                         }
-                    }
+
 
                     override fun onFailure(call: Call<MainUsers>?, t: Throwable) {
                         Toast.makeText(activity, t.toString(), Toast.LENGTH_SHORT).show()

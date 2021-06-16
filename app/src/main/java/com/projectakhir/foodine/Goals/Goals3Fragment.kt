@@ -4,7 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.projectakhir.foodine.AllMethod.userData
+import com.projectakhir.foodine.AllMethod.userDataCondition
+import com.projectakhir.foodine.AllMethod.userDataDetail
 import com.projectakhir.foodine.R
 import kotlinx.android.synthetic.main.fragment_goals3.view.*
 
@@ -28,11 +32,11 @@ class Goals3Fragment : Fragment() {
         val femaleImage = R.drawable.goals_female
 
         //TODO : send API for calculate ideal goals
-        nameText.setText("${setGoal.name}")
-        ageText.setText("${setGoal.age} y.o")
-        weightText.setText("${setGoal.weight} kg")
-        heightText.setText("${setGoal.height} cm")
-        if(setGoal.gender == "male"){
+        nameText.setText("${userDataDetail?.userName}")
+        ageText.setText("${(activity as GoalsActivity).userAge} y.o")
+        weightText.setText("${userDataCondition?.userWeight} kg")
+        heightText.setText("${userDataCondition?.userHeight} cm")
+        if(userDataDetail?.userGender == "male"){
             genderImage.setImageDrawable(resources.getDrawable(maleImage))
         }
         else{
