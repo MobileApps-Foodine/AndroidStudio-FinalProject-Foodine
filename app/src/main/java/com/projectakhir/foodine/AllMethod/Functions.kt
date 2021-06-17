@@ -71,6 +71,13 @@ fun failedDialog(dialog : SweetAlertDialog){
         .changeAlertType(SweetAlertDialog.ERROR_TYPE)
 }
 
+fun successDialog(dialog : SweetAlertDialog, title:String, message:String){
+    dialog.setTitleText(title)
+        .setContentText(message)
+        .setConfirmText("OK")
+        .changeAlertType(SweetAlertDialog.SUCCESS_TYPE)
+}
+
 fun getImageUriFromBitmap(context: Context, inImage: Bitmap): Uri {
     val bytes = ByteArrayOutputStream()
     inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
