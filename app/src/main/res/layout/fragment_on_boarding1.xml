@@ -9,12 +9,6 @@
     android:background="@color/sec_green"
     android:padding="@dimen/layoutPadding">
 
-<!--    <include-->
-<!--        android:id="@+id/onboard1_statusbar"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        layout="@layout/transparent_status_bar" />-->
-
     <ImageView
         android:id="@+id/onboard1_img"
         android:layout_width="200dp"

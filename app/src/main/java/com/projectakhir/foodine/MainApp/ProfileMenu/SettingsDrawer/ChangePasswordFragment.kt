@@ -1,4 +1,4 @@
-package com.projectakhir.foodine.MainApp.SettingsDrawer
+package com.projectakhir.foodine.MainApp.ProfileMenu.SettingsDrawer
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -10,32 +10,29 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.projectakhir.foodine.AllMethod.clearEditText
-import com.projectakhir.foodine.AllMethod.userData
-import com.projectakhir.foodine.AllMethod.userDataDetail
 import com.projectakhir.foodine.AllMethod.warningDiscardChange
 import com.projectakhir.foodine.R
-import kotlinx.android.synthetic.main.fragment_change_email.*
-import kotlinx.android.synthetic.main.fragment_change_email.view.*
+import kotlinx.android.synthetic.main.fragment_change_password.*
 import kotlinx.android.synthetic.main.fragment_change_password.view.*
 
-class ChangeEmailFragment : BottomSheetDialogFragment() {
+
+class ChangePasswordFragment : BottomSheetDialogFragment() {
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_change_email, container, false)
-        clearEditText(arrayListOf(view.changeemail_current_txt, view.changeemail_new_txt))
-        changeemail_current_txt.setText(userData?.userEmail)
+        val view = inflater.inflate(R.layout.fragment_change_password, container, false)
+        clearEditText(arrayListOf(view.changepass_current_txt, view.changepass_new_txt, view.changepass_confirm_txt))
 
-        view.changeemail_btn_cancel.setOnClickListener {
-            if(!isContentEmpty()) warningDiscardChange(requireActivity(), (activity as SettingsAccountActivity).changeEmail)
+        view.changepass_btn_cancel.setOnClickListener {
+            if(!isContentEmpty()) warningDiscardChange(requireActivity(), (activity as SettingsAccountActivity).changePassword)
             else{
                 dismiss()
             }
         }
 
-        view.changeemail_btn_submit.setOnClickListener {
+        view.changepass_btn_submit.setOnClickListener {
             //todo : check ada yg kosong, check new+confirm sama, else kirim data
         }
 
@@ -52,8 +49,9 @@ class ChangeEmailFragment : BottomSheetDialogFragment() {
     }
 
     private fun isContentEmpty() : Boolean{
-        val output = changeemail_current_txt.text.toString().isEmpty() &&
-                changeemail_new_txt.text.toString().isEmpty()
+        val output = changepass_current_txt.text.toString().isEmpty() &&
+                changepass_new_txt.text.toString().isEmpty() &&
+                changepass_confirm_txt.text.toString().isEmpty()
         isCancelable = output
         return output
     }

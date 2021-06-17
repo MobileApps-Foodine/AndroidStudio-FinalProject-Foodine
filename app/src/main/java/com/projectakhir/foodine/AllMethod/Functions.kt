@@ -14,7 +14,6 @@ import cn.pedant.SweetAlert.SweetAlertDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
-import com.projectakhir.foodine.MainApp.SettingsDrawer.SettingsAccountActivity
 import com.projectakhir.foodine.R
 import java.io.ByteArrayOutputStream
 

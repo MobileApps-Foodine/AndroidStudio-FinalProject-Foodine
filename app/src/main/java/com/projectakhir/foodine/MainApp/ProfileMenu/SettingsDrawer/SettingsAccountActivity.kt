@@ -1,4 +1,4 @@
-package com.projectakhir.foodine.MainApp.SettingsDrawer
+package com.projectakhir.foodine.MainApp.ProfileMenu.SettingsDrawer
 
 import android.Manifest
 import android.app.Activity
@@ -57,7 +57,6 @@ class SettingsAccountActivity : AppCompatActivity(){
     lateinit var changePassword : BottomSheetDialogFragment
     lateinit var changeEmail : BottomSheetDialogFragment
 
-    //TODO : change email
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings_account)
@@ -101,7 +100,7 @@ class SettingsAccountActivity : AppCompatActivity(){
         initWebsite = if(userDataDetail?.userUrl != null) { userDataDetail?.userUrl!! }
                     else{ emptyString }
         initGender = if(userDataDetail?.userGender != null){ userDataDetail?.userGender!!.toString() }
-                    else{ "male" }
+                    else{ Gender.male.toString() }
         initPhoto = if(userDataDetail?.userPhoto != null){ userDataDetail?.userPhoto!! }
                     else { emptyString }
 

@@ -1,11 +1,8 @@
-package com.projectakhir.foodine.MainApp.SettingsDrawer
+package com.projectakhir.foodine.MainApp.ProfileMenu.SettingsDrawer
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.graphics.Typeface
 import android.os.Bundle
-import android.text.SpannableString
-import android.text.style.TextAppearanceSpan
 import android.view.MotionEvent
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
@@ -13,7 +10,6 @@ import com.projectakhir.foodine.BuildConfig
 import com.projectakhir.foodine.R
 import mehdi.sakout.aboutpage.AboutPage
 import mehdi.sakout.aboutpage.Element
-import java.security.AccessController.getContext
 
 
 class SettingsAboutActivity : AppCompatActivity() {

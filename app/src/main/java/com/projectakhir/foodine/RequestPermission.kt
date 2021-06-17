@@ -14,7 +14,7 @@ import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import com.karumi.dexter.listener.multi.SnackbarOnAnyDeniedMultiplePermissionsListener
 import com.karumi.dexter.listener.single.PermissionListener
 import com.projectakhir.foodine.AllMethod.manifestPermissions
-import com.projectakhir.foodine.MainApp.SettingsDrawer.SettingsAccountActivity
+import com.projectakhir.foodine.MainApp.ProfileMenu.SettingsDrawer.SettingsAccountActivity
 import com.projectakhir.foodine.OtherActivity.SplashScreenActivity
 
 

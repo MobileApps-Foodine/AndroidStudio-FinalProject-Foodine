@@ -20,17 +20,17 @@
         android:usesCleartextTraffic="true"
         android:windowSoftInputMode="adjustPan">
         <activity android:name=".OtherActivity.ShowPictureActivity"/>
-        <activity android:name=".MainApp.SettingsDrawer.SettingsAccountActivity"/>
-        <activity android:name=".MainApp.SettingsDrawer.SettingsAboutActivity" />
-        <activity android:name=".MainApp.SettingsDrawer.SettingsFeedbackActivity" />
+        <activity android:name="com.projectakhir.foodine.MainApp.ProfileMenu.SettingsDrawer.SettingsAccountActivity"/>
+        <activity android:name="com.projectakhir.foodine.MainApp.ProfileMenu.SettingsDrawer.SettingsAboutActivity" />
+        <activity android:name="com.projectakhir.foodine.MainApp.ProfileMenu.SettingsDrawer.SettingsFeedbackActivity" />
         <activity android:name=".MainApp.AddMenu.AddShoppinglistActivity" />
         <activity android:name=".MainApp.AddMenu.AddRecipeActivity" />
         <activity android:name=".MainApp.AddMenu.AddCalculateGoalsActivity" />
         <activity android:name=".MainApp.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
         </activity>
         <activity
             android:name=".Goals.GoalsActivity"
@@ -52,10 +52,10 @@
             android:name=".OtherActivity.SplashScreenActivity"
             android:noHistory="true"
             android:theme="@style/Theme.Foodine.NoActionBar">
-<!--             <intent-filter>-->
-<!--                 <action android:name="android.intent.action.MAIN" />-->
-<!--                 <category android:name="android.intent.category.LAUNCHER" />-->
-<!--             </intent-filter>-->
+             <intent-filter>
+                 <action android:name="android.intent.action.MAIN" />
+                 <category android:name="android.intent.category.LAUNCHER" />
+             </intent-filter>
         </activity>
 
         <meta-data

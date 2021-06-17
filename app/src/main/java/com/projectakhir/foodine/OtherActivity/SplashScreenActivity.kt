@@ -34,7 +34,7 @@ class SplashScreenActivity : AppCompatActivity() {
     }
 
     fun splashIsDone(){
-        //TODO : if apiToken is stated, intent to MainApplication
+        //TODO : get data from sqlite
         if(apiToken.isEmpty()){
             val intent = Intent(this@SplashScreenActivity, OnBoardingActivity::class.java)
             startActivity(intent)

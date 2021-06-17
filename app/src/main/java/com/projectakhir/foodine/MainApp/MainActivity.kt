@@ -24,7 +24,7 @@ import com.google.android.material.navigation.NavigationView
 import com.projectakhir.foodine.AllMethod.*
 import com.projectakhir.foodine.BuildConfig
 import com.projectakhir.foodine.MainApp.AddMenu.AddCalculateGoalsActivity
-import com.projectakhir.foodine.MainApp.SettingsDrawer.*
+import com.projectakhir.foodine.MainApp.ProfileMenu.SettingsDrawer.*
 import com.projectakhir.foodine.R
 import com.projectakhir.foodine.SettingAPI.Interface.UserInterface
 import com.projectakhir.foodine.SettingAPI.ResponseDataClass.ErrorHelper

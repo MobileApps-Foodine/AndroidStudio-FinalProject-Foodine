@@ -1,4 +1,4 @@
-package com.projectakhir.foodine.MainApp.SettingsDrawer
+package com.projectakhir.foodine.MainApp.ProfileMenu.SettingsDrawer
 
 interface DrawerInterface {
     fun drawerLocked()

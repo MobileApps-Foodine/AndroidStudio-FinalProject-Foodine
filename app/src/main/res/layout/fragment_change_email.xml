@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".MainApp.SettingsDrawer.ChangeEmailFragment"
+    tools:context=".MainApp.ProfileMenu.SettingsDrawer.ChangeEmailFragment"
     android:layout_width="match_parent"
     android:layout_height="450dp"
     android:orientation="vertical"

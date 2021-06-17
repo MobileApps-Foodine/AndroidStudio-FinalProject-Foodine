@@ -20,8 +20,7 @@
             android:layout_height="match_parent"
             app:defaultNavHost="true"
             app:navGraph="@navigation/nav_main_app"
-            android:layout_above="@id/main_bottombar_menu"
-            android:layout_margin="@dimen/viewPadding"/>
+            android:layout_above="@id/main_bottombar_menu"/>
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/main_bottombar_menu"
