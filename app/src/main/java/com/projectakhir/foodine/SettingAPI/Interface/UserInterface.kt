@@ -20,4 +20,10 @@ interface UserInterface {
 
         @POST("user/addDetailCondition") // age, dob, height, weight
         fun userDetailCondition (@Body data: HashMap<String, String>) : Call<MainUsers>
+
+        @POST ("user/changeEmail")
+        fun userChangeEmail (@Body data: HashMap<String, String>): Call<MainUsers>
+
+        @POST ("user/changePassword")
+        fun userChangePassword (@Body data: HashMap<String, String>): Call<MainUsers>
     }

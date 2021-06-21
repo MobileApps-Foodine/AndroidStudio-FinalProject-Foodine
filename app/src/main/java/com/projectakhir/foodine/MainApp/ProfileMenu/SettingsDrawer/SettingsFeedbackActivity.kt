@@ -46,6 +46,7 @@ class SettingsFeedbackActivity : AppCompatActivity() {
 
         settings_feedback_send.setOnClickListener {
             //TODO : send to database
+
             Toast.makeText(this, "Your feedback has been sent", Toast.LENGTH_SHORT).show()
             onBackPressed()
         }

@@ -22,7 +22,7 @@ class ServerAPI {
     lateinit var pDialog : SweetAlertDialog
 
 
-    fun getServerAPI(activity : Activity) : Retrofit?{
+    fun getServerAPI(activity: Activity): Retrofit?{
         if(retrofit == null){
             httpClient.addInterceptor(object : Interceptor {
                 override fun intercept(chain: Interceptor.Chain): okhttp3.Response {

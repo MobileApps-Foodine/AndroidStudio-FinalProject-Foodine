@@ -7,9 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.Toast
-import androidx.navigation.fragment.findNavController
 import com.projectakhir.foodine.AllMethod.*
 import com.projectakhir.foodine.DataClass.MainUsers
 import com.projectakhir.foodine.R
@@ -18,8 +16,6 @@ import com.projectakhir.foodine.SettingAPI.Interface.UserInterface
 import com.projectakhir.foodine.SettingAPI.ResponseDataClass.ErrorHelper
 import com.projectakhir.foodine.SettingAPI.ResponseDataClass.ErrorResponse
 import com.projectakhir.foodine.SettingAPI.ServerAPI
-import kotlinx.android.synthetic.main.activity_sign_in_up.*
-import kotlinx.android.synthetic.main.fragment_sign_in.view.*
 import kotlinx.android.synthetic.main.fragment_sign_up.view.*
 import retrofit2.Call
 import retrofit2.Callback

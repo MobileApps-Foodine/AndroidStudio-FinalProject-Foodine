@@ -9,7 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
-import cn.pedant.SweetAlert.SweetAlertDialog
 import com.projectakhir.foodine.AllMethod.*
 import com.projectakhir.foodine.DataClass.MainUsers
 import com.projectakhir.foodine.Goals.GoalsActivity
@@ -56,7 +55,6 @@ class SignInFragment : Fragment() {
         btn_signIn.setOnClickListener {
             clearFocusableAllEditText(arrayListOf(input_email, input_password))
             if(input_email.text.toString().isNotEmpty() && input_password.text.toString().isNotEmpty()){
-                //TODO : send data to database
                 val mainUser = MainUsers(
                     userEmail = input_email.text.toString(),
                     userPassword = input_password.text.toString())
