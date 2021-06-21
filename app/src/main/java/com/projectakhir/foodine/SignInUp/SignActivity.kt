@@ -7,6 +7,8 @@ import android.os.Bundle
 import android.view.MotionEvent
 import android.view.inputmethod.InputMethodManager
 import androidx.navigation.fragment.findNavController
+import com.projectakhir.foodine.AllMethod.localUser
+import com.projectakhir.foodine.DatabaseHandler
 import com.projectakhir.foodine.R
 import kotlinx.android.synthetic.main.activity_sign_in_up.*
 
@@ -17,8 +19,9 @@ class SignActivity : AppCompatActivity() {
 
         supportActionBar?.title=""
         supportActionBar?.elevation=0.0f
-        if(intent.getBooleanExtra("fromOnBoarding", false) == true){
-            nav_host_fragment.findNavController().navigate(R.id.action_signInFragment_to_signUpFragment)
+        when(intent.getStringExtra("from")){
+            "OnBoarding" -> nav_host_fragment.findNavController().navigate(R.id.action_signInFragment_to_signUpFragment)
+            "MainActivity" -> localUser = DatabaseHandler(this).getUser()
         }
     }
 

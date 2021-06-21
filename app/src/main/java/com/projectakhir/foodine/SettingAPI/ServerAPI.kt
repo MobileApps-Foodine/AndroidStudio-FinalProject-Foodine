@@ -1,14 +1,10 @@
 package com.projectakhir.foodine.SettingAPI
 
 import android.app.Activity
-import android.content.Context
 import android.graphics.Color
 import cn.pedant.SweetAlert.SweetAlertDialog
 import com.google.gson.GsonBuilder
-import com.projectakhir.foodine.AllMethod.apiToken
-import com.projectakhir.foodine.R
-import com.projectakhir.foodine.RequestPermission
-import kotlinx.coroutines.delay
+import com.projectakhir.foodine.AllMethod.localUser
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -24,17 +20,15 @@ class ServerAPI {
 
     fun getServerAPI(activity : Activity) : Retrofit?{
         if(retrofit == null){
-            httpClient.addInterceptor(object : Interceptor {
-                override fun intercept(chain: Interceptor.Chain): okhttp3.Response {
-                    val original: Request = chain.request()
+            httpClient.addInterceptor(Interceptor { chain ->
+                val original: Request = chain.request()
 
-                    val request = original.newBuilder()
-                        .header("Accept", "application/json")
-                        .header("Authorization", "Bearer $apiToken")
-                        .method(original.method, original.body)
-                        .build()
-                    return chain.proceed(request)
-                }
+                val request = original.newBuilder()
+                    .header("Accept", "application/json")
+                    .header("Authorization", "Bearer ${localUser?.mainUser?.userAPItoken}")
+                    .method(original.method, original.body)
+                    .build()
+                chain.proceed(request)
             })
 
             pDialog = SweetAlertDialog(activity, SweetAlertDialog.PROGRESS_TYPE)

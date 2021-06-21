@@ -6,8 +6,38 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainApp.AddMenu.AddShoppinglistActivity"
-    android:layout_margin="@dimen/layoutPadding"
+    android:padding="@dimen/layoutPadding"
     android:orientation="vertical"
     android:divider="@drawable/divider_subview_padding"
-    android:showDividers="middle">
+    android:showDividers="middle"
+    android:id="@+id/add_shoppinglist_layout">
+
+    <EditText
+        android:id="@+id/add_shoppinglist_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:hint="Title"
+        android:textStyle="bold"
+        style="@style/TextAppearance.MaterialComponents.Headline6"/>
+
+    <ListView
+        android:id="@+id/add_shoppinglist_lists"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/viewPadding"
+        android:paddingBottom="25dp"/>
+
+    <TextView
+        android:id="@+id/add_shoppinglist_new_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:text="List item"
+        android:drawableStart="@drawable/ic_add_unborder"
+        style="?attr/textAppearanceSubtitle1"
+        android:drawablePadding="@dimen/viewPadding"
+        android:layout_marginHorizontal="@dimen/subviewPadding"
+        android:foregroundGravity="center"
+        android:layout_marginTop="-25dp"/>
 </LinearLayout>

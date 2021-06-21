@@ -17,6 +17,9 @@ data class MainUsers(
     constructor(userEmail: String?, userPassword: String?) :
             this(toEmpty, userEmail, userPassword, toEmpty, toEmpty, toEmpty, toEmpty, toEmpty)
 
+    constructor(userEmail: String?, userAPItoken: String?, userDetail : UserDetail?) :
+            this(toEmpty, userEmail, toEmpty, toEmpty, userAPItoken, toEmpty, userDetail, toEmpty)
+
     constructor(userName: String?, userEmail: String?, userPassword: String?, userPasswordConfirmation: String?) :
             this(userName, userEmail, userPassword, userPasswordConfirmation, toEmpty, toEmpty, toEmpty, toEmpty)
 }

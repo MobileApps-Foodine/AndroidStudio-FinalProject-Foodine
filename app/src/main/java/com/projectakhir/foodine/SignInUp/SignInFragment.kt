@@ -9,9 +9,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
-import cn.pedant.SweetAlert.SweetAlertDialog
 import com.projectakhir.foodine.AllMethod.*
+import com.projectakhir.foodine.DataClass.DatabaseModel
 import com.projectakhir.foodine.DataClass.MainUsers
+import com.projectakhir.foodine.DatabaseHandler
 import com.projectakhir.foodine.Goals.GoalsActivity
 import com.projectakhir.foodine.MainApp.MainActivity
 import com.projectakhir.foodine.R
@@ -30,16 +31,20 @@ class SignInFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        //TODO : if remember me is clicked, then save user email into database. if login success, save its apiToken too
         val view = inflater.inflate(R.layout.fragment_sign_in, container, false)
 
         val input_email = view.signin_input_email
         val input_password = view.signin_input_password
         val txt_signUp = view.signin_txtClick_signUp
         val btn_signIn = view.signin_btn_signIn
-
+        val rememberMe = view.signin_check_remember
         resetErrorEdittext(view.signin_layout_email, input_email)
         resetErrorEdittext(view.signin_layout_password, input_password)
+
+        if(localUser?.remember!!){
+            rememberMe.isChecked = localUser?.remember!!
+            input_email.setText(localUser?.mainUser?.userEmail)
+        }
 
         txt_signUp.setOnClickListener {
             if(activity is SignActivity){
@@ -48,7 +53,7 @@ class SignInFragment : Fragment() {
             else{
                 val intent = Intent(activity, SignActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_NO_ANIMATION
-                intent.putExtra("fromOnBoarding", true)
+                intent.putExtra("from", "onBoarding")
                 startActivity(intent)
             }
         }
@@ -56,7 +61,6 @@ class SignInFragment : Fragment() {
         btn_signIn.setOnClickListener {
             clearFocusableAllEditText(arrayListOf(input_email, input_password))
             if(input_email.text.toString().isNotEmpty() && input_password.text.toString().isNotEmpty()){
-                //TODO : send data to database
                 val mainUser = MainUsers(
                     userEmail = input_email.text.toString(),
                     userPassword = input_password.text.toString())
@@ -68,8 +72,8 @@ class SignInFragment : Fragment() {
                         if (response!!.isSuccessful) {
                             userData = response.body()
                             userDataDetail = userData!!.userDetail
-                            apiToken = userData?.userAPItoken!!
                             serverAPI.pDialog.dismissWithAnimation()
+                            localUser = DatabaseHandler(requireActivity()).modifyUser(DatabaseModel(null, rememberMe.isChecked, userData))
                             Toast.makeText(activity, "Login successfull", Toast.LENGTH_LONG).show()
                             if(userData?.userConditions != null){
                                 userDataCondition = userData?.userConditions!!.size.minus(

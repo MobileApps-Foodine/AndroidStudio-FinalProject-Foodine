@@ -4,7 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.projectakhir.foodine.AllMethod.apiToken
+import com.projectakhir.foodine.AllMethod.*
+import com.projectakhir.foodine.DatabaseHandler
 import com.projectakhir.foodine.MainApp.MainActivity
 import com.projectakhir.foodine.R
 import com.projectakhir.foodine.RequestPermission
@@ -34,13 +35,15 @@ class SplashScreenActivity : AppCompatActivity() {
     }
 
     fun splashIsDone(){
-        //TODO : get data from sqlite
-        if(apiToken.isEmpty()){
-            val intent = Intent(this@SplashScreenActivity, OnBoardingActivity::class.java)
+        localUser = DatabaseHandler(this).getUser()
+        if(!localUser?.mainUser?.userAPItoken.isNullOrEmpty()){
+            userData = localUser!!.mainUser
+            userDataDetail = localUser!!.mainUser?.userDetail
+            val intent = Intent(this@SplashScreenActivity, MainActivity::class.java)
+            intent.putExtra("from", "SplashScreen")
             startActivity(intent)
         } else{
-            val intent = Intent(this@SplashScreenActivity, MainActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this@SplashScreenActivity, OnBoardingActivity::class.java))
         }
         finish()
     }

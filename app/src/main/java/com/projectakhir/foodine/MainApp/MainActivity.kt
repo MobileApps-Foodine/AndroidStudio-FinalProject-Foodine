@@ -23,6 +23,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 import com.projectakhir.foodine.AllMethod.*
 import com.projectakhir.foodine.BuildConfig
+import com.projectakhir.foodine.DataClass.DatabaseModel
+import com.projectakhir.foodine.DatabaseHandler
 import com.projectakhir.foodine.MainApp.AddMenu.AddCalculateGoalsActivity
 import com.projectakhir.foodine.MainApp.ProfileMenu.SettingsDrawer.*
 import com.projectakhir.foodine.R
@@ -50,6 +52,14 @@ class MainActivity : AppCompatActivity(), DrawerInterface{
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        //API
+        val msg = intent.getStringExtra("from")
+        when(msg){
+            "SplashScreen" -> {
+                //todo : get data from database (userCondition)
+            }
+        }
 
         //Bottom Bar
         bottomBar = findViewById(R.id.main_bottombar_menu)
@@ -140,7 +150,6 @@ class MainActivity : AppCompatActivity(), DrawerInterface{
     fun logoutDialog(){
         val alertDialog = SweetAlertDialog(this@MainActivity, SweetAlertDialog.WARNING_TYPE)
         alertDialog.setContentText("Are you sure want to log out?")
-                //Logout Account
             .setConfirmText("Logout")
             .setConfirmClickListener {
                 val serverAPI = ServerAPI()
@@ -155,10 +164,12 @@ class MainActivity : AppCompatActivity(), DrawerInterface{
                             userData = toEmpty
                             userDataDetail = toEmpty
                             userDataCondition = toEmpty
-                            apiToken = emptyString
                             it.dismissWithAnimation()
+                            localUser = DatabaseHandler(this@MainActivity).deleteUser()
                             Toast.makeText(this@MainActivity, "Logged out", Toast.LENGTH_SHORT).show()
-                            startActivity(Intent(this@MainActivity, SignActivity::class.java))
+                            val intent = Intent(this@MainActivity, SignActivity::class.java)
+                            intent.putExtra("from", "MainActivity")
+                            startActivity(intent)
                         } else {
                             serverAPI.pDialog.dismissWithAnimation()
                             try {

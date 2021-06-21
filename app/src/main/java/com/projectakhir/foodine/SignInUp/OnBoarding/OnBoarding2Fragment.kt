@@ -16,10 +16,8 @@ class OnBoarding2Fragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_on_boarding2, container, false)
-
         view.onboard2_skip.setOnClickListener {
-            val intent = Intent(activity, SignActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(activity, SignActivity::class.java))
         }
 
         return view

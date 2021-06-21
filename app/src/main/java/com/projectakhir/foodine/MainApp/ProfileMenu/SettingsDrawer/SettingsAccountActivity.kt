@@ -128,7 +128,7 @@ class SettingsAccountActivity : AppCompatActivity(){
     private fun dobConfiguration() {
         val pos = ParsePosition(0)
         val sdf = SimpleDateFormat("yyyy-mm-dd", Locale.US)
-        val lastDate = sdf.parse(userDataDetail!!.userDob, pos).time
+        var lastDate = sdf.parse(userDataDetail!!.userDob, pos).time
         showDOB(lastDate)
 
         initDOB = lastDate.toString()
@@ -142,7 +142,7 @@ class SettingsAccountActivity : AppCompatActivity(){
 
             val datePicker = MaterialDatePicker.Builder.datePicker()
                 .setTitleText("Date of Birth")
-                .setSelection(lastDate + TimeUnit.DAYS.toMillis(1))
+                .setSelection(lastDate)
                 .setInputMode(MaterialDatePicker.INPUT_MODE_CALENDAR)
                 .setCalendarConstraints(constraintBuilder.build())
                 .setTheme(R.style.MyDatePicker)
@@ -151,6 +151,7 @@ class SettingsAccountActivity : AppCompatActivity(){
             datePicker.addOnPositiveButtonClickListener{
                 showDOB(datePicker.selection)
                 currentDOB = sdf.format(datePicker.selection)
+                lastDate = it
             }
             datePicker.addOnNegativeButtonClickListener{}
             datePicker.isCancelable = false

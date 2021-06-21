@@ -1,19 +1,14 @@
 package com.projectakhir.foodine.AllMethod
 
 import android.Manifest
+import com.projectakhir.foodine.DataClass.*
 import com.projectakhir.foodine.R
-import com.projectakhir.foodine.DataClass.MainUsers
-import com.projectakhir.foodine.DataClass.UserConditions
-import com.projectakhir.foodine.DataClass.UserDetail
-import com.projectakhir.foodine.DataClass.UserGoal
 
 var userData : MainUsers? = null
 var userDataDetail : UserDetail? = null
 var userDataCondition : UserConditions? = null
 var userGoal : UserGoal? = null
-var apiToken : String = ""
-val maleImage = R.drawable.goals_male
-val femaleImage = R.drawable.goals_female
+var localUser : DatabaseModel? = null
 
 val manifestPermissions : List<String> = listOf(
     Manifest.permission.READ_EXTERNAL_STORAGE,

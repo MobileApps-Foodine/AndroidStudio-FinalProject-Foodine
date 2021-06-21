@@ -23,7 +23,12 @@
         <activity android:name="com.projectakhir.foodine.MainApp.ProfileMenu.SettingsDrawer.SettingsAccountActivity"/>
         <activity android:name="com.projectakhir.foodine.MainApp.ProfileMenu.SettingsDrawer.SettingsAboutActivity" />
         <activity android:name="com.projectakhir.foodine.MainApp.ProfileMenu.SettingsDrawer.SettingsFeedbackActivity" />
-        <activity android:name=".MainApp.AddMenu.AddShoppinglistActivity" />
+        <activity android:name=".MainApp.AddMenu.AddShoppinglistActivity">
+<!--        <intent-filter>-->
+<!--            <action android:name="android.intent.action.MAIN" />-->
+<!--            <category android:name="android.intent.category.LAUNCHER" />-->
+<!--        </intent-filter>-->
+        </activity>
         <activity android:name=".MainApp.AddMenu.AddRecipeActivity" />
         <activity android:name=".MainApp.AddMenu.AddCalculateGoalsActivity" />
         <activity android:name=".MainApp.MainActivity">

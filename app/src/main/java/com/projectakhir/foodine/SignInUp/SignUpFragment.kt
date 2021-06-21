@@ -7,19 +7,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.Toast
-import androidx.navigation.fragment.findNavController
 import com.projectakhir.foodine.AllMethod.*
+import com.projectakhir.foodine.DataClass.DatabaseModel
 import com.projectakhir.foodine.DataClass.MainUsers
+import com.projectakhir.foodine.DatabaseHandler
 import com.projectakhir.foodine.R
 import com.projectakhir.foodine.Goals.GoalsActivity
 import com.projectakhir.foodine.SettingAPI.Interface.UserInterface
 import com.projectakhir.foodine.SettingAPI.ResponseDataClass.ErrorHelper
 import com.projectakhir.foodine.SettingAPI.ResponseDataClass.ErrorResponse
 import com.projectakhir.foodine.SettingAPI.ServerAPI
-import kotlinx.android.synthetic.main.activity_sign_in_up.*
-import kotlinx.android.synthetic.main.fragment_sign_in.view.*
 import kotlinx.android.synthetic.main.fragment_sign_up.view.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -77,11 +75,10 @@ class SignUpFragment : Fragment() {
                             serverAPI.pDialog.dismissWithAnimation()
                             userData = response.body()
                             userDataDetail = userData?.userDetail
-                            apiToken = userData?.userAPItoken!!
                             serverAPI.pDialog.dismissWithAnimation()
+                            localUser = DatabaseHandler(requireActivity()).modifyUser(DatabaseModel(null, false, userData))
                             Toast.makeText(activity, "Registration successfull", Toast.LENGTH_LONG).show()
-                            val intent = Intent(activity, GoalsActivity::class.java)
-                            startActivity(intent)
+                            startActivity(Intent(activity, GoalsActivity::class.java))
                         } else {
                             serverAPI.pDialog.dismissWithAnimation()
                             try {

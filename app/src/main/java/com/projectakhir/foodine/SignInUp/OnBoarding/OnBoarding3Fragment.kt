@@ -17,8 +17,7 @@ class OnBoarding3Fragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_on_boarding3, container, false)
         view.onboard3_skip.setOnClickListener {
-            val intent = Intent(activity, SignActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(activity, SignActivity::class.java))
         }
         return view
     }

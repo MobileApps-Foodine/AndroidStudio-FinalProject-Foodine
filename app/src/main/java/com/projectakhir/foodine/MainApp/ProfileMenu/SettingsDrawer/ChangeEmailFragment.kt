@@ -24,7 +24,7 @@ class ChangeEmailFragment : BottomSheetDialogFragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_change_email, container, false)
         clearEditText(arrayListOf(view.changeemail_current_txt, view.changeemail_new_txt))
-        changeemail_current_txt.setText(userData?.userEmail)
+        view.changeemail_current_txt.setText(userData?.userEmail)
 
         view.changeemail_btn_cancel.setOnClickListener {
             if(!isContentEmpty()) warningDiscardChange(requireActivity(), (activity as SettingsAccountActivity).changeEmail)

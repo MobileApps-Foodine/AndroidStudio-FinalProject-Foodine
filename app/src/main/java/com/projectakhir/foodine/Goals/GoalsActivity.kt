@@ -11,11 +11,10 @@ import android.widget.RelativeLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
-import com.projectakhir.foodine.AllMethod.failedDialog
-import com.projectakhir.foodine.AllMethod.userData
-import com.projectakhir.foodine.AllMethod.userDataCondition
-import com.projectakhir.foodine.AllMethod.userDataDetail
+import com.projectakhir.foodine.AllMethod.*
+import com.projectakhir.foodine.DataClass.DatabaseModel
 import com.projectakhir.foodine.DataClass.MainUsers
+import com.projectakhir.foodine.DatabaseHandler
 import com.projectakhir.foodine.MainApp.MainActivity
 import com.projectakhir.foodine.R
 import com.projectakhir.foodine.SettingAPI.Interface.UserInterface
@@ -86,15 +85,14 @@ class GoalsActivity : AppCompatActivity() {
                     userInterface.userDetailCondition(mainUser).enqueue(object : Callback<MainUsers>{
                         override fun onResponse(call: Call<MainUsers>, response: Response<MainUsers>) {
                             if (response!!.isSuccessful) {
-                                serverAPI.pDialog.dismissWithAnimation()
                                 userData = response.body()
                                 userDataDetail = userData!!.userDetail
                                 userDataCondition = userData?.userConditions!!.size.minus(
                                     1
                                 ).let { it1 -> userData!!.userConditions!!.get(it1) }
-                                Toast.makeText(this@GoalsActivity, "Register Successful", Toast.LENGTH_LONG).show()
-                                val intent = Intent(this@GoalsActivity, MainActivity::class.java)
-                                startActivity(intent)
+                                localUser = DatabaseHandler(this@GoalsActivity).modifyUser(DatabaseModel(userData))
+                                serverAPI.pDialog.dismissWithAnimation()
+                                startActivity(Intent(this@GoalsActivity, MainActivity::class.java))
                             } else {
                                 serverAPI.pDialog.dismissWithAnimation()
                                 try {

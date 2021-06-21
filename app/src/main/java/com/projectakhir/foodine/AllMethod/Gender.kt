@@ -1,14 +1,16 @@
 package com.projectakhir.foodine.AllMethod
 
+import com.projectakhir.foodine.R
+
 enum class Gender() {
     male{
         override fun getImageDefault(): Int {
-            return maleImage
+            return R.drawable.goals_male
         }
     },
     female{
         override fun getImageDefault(): Int {
-            return femaleImage
+            return R.drawable.goals_female
         }
     };
 

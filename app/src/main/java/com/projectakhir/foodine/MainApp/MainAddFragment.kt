@@ -21,20 +21,17 @@ class MainAddFragment : BottomSheetDialogFragment() {
 
         view.add_recipe.setOnClickListener {
             dismiss()
-            val intent = Intent(activity,AddRecipeActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(activity,AddRecipeActivity::class.java))
         }
 
         view.add_shoppinglist.setOnClickListener {
             dismiss()
-            val intent = Intent(activity,AddShoppinglistActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(activity,AddShoppinglistActivity::class.java))
         }
 
         view.add_calculate_goals.setOnClickListener {
             dismiss()
-            val intent = Intent(activity,AddCalculateGoalsActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(activity,AddCalculateGoalsActivity::class.java))
         }
         return view
     }
